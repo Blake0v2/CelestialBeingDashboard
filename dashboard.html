@@ -4,68 +4,6 @@
   <meta charset="UTF-8" />
   <title>Discord Bot Dashboard</title>
   <link rel="stylesheet" href="static/style.css" />
-  <style>
-    /* Ensure log out button is at the top-right */
-    #log-out-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      padding: 10px;
-      background-color: #ff0000;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    /* Style the welcome section to make it look centered */
-    #welcome {
-      text-align: center;
-      padding: 20px;
-    }
-
-    #welcome img {
-      border-radius: 50%;
-      width: 100px;
-      height: 100px;
-    }
-
-    #welcome h1 {
-      margin-top: 10px;
-      font-size: 24px;
-      color: #333;
-    }
-
-    #welcome p {
-      font-size: 16px;
-      color: #666;
-    }
-
-    /* Sidebar buttons and positioning */
-    .sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 250px;
-      height: 100%;
-      background-color: #2c3e50;
-      color: white;
-      padding: 10px;
-    }
-
-    .sidebar button {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0;
-      background-color: #34495e;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    .sidebar button:hover {
-      background-color: #1abc9c;
-    }
-  </style>
 </head>
 <body>
   <!-- Sidebar -->
@@ -172,7 +110,7 @@
       for (let category in commandsData) {
         let categoryTitle = document.createElement('h2');
         categoryTitle.classList.add('command-category');
-        categoryTitle.textContent = `${category} Commands`;
+        categoryTitle.textContent = ${category} Commands;
 
         let commandGrid = document.createElement('div');
         commandGrid.classList.add('command-grid');
@@ -180,7 +118,7 @@
         commandsData[category].forEach(command => {
           let commandBox = document.createElement('div');
           commandBox.classList.add('command-box');
-          commandBox.innerHTML = `<div class="command-title">${command.name}</div><div class="command-description">${command.description}</div>`;
+          commandBox.innerHTML = <div class="command-title">${command.name}</div><div class="command-description">${command.description}</div>;
           commandGrid.appendChild(commandBox);
         });
 
