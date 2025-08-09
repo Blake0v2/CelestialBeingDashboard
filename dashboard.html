@@ -13,8 +13,8 @@
     
     <!-- User Login/Logout Status -->
     <div id="user-info">
-      <span id="user-name">Not logged in</span>
-      <img id="user-avatar" src="" alt="User Avatar" style="display: none; width: 40px; height: 40px; border-radius: 50%;" />
+      <span id="user-name">User123#4567</span>
+      <img id="user-avatar" src="https://cdn.discordapp.com/avatars/1234567890/abcdef12345.png" alt="User Avatar" style="width: 40px; height: 40px; border-radius: 50%;" />
     </div>
 
     <button id="show-dashboard">Dashboard</button>
@@ -22,79 +22,63 @@
     <button id="show-commands">Commands</button>
     <button id="show-leaderboard">Leaderboard</button>
 
-    <button id="log-out-btn" onclick="logout()" style="display: none;">Log Out [➔]</button>
+    <button id="log-out-btn" style="display: none;">Log Out [➔]</button>
   </div>
 
   <div class="main-content">
     <!-- Dashboard Section -->
     <div class="page-section" id="dashboard">
       <div id="welcome">
-        <img src="" alt="User Avatar" id="welcome-avatar"/>
-        <h1>Welcome, <span id="welcome-name">Loading...</span>!</h1>
+        <img src="https://cdn.discordapp.com/avatars/1234567890/abcdef12345.png" alt="User Avatar" id="welcome-avatar"/>
+        <h1>Welcome, User123#4567!</h1>
         <p>This is our official website, developed by @BlakeO_o.</p>
         <p>Please support me by joining our discord ➡️<a href="https://discord.com/invite/A6xhTeGKJg" target="_blank">Arch Angels</a></p>
       </div>
     </div>
 
-    <!-- Current Raid Section -->
-    <div class="page-section" id="current_raid" style="display: none;">
-      <h1>Current Raid Status</h1>
-      <div class="raid-box" id="dedu-island">
-        <div class="raid-title">Dedu Island Raid Has Spawned!</div>
-        <div class="raid-description">Will you reach the "King"?</div>
-        <img src="https://i.postimg.cc/rwSNPy5m/Untitled-design-36.png" alt="Dedu Island" class="raid-image" />
-        <div class="raid-footer">Discord.gg/A6xhTeGKJg</div>
-      </div>
-    </div>
-
     <!-- Bot Commands Section -->
-    <div class="page-section" id="commands" style="display: none;">
+    <div class="page-section" id="commands" style="display: block;">
       <h1>Bot Commands</h1>
-      <div id="command-list"></div> <!-- Dynamically populated by JS -->
+      <div id="command-list">
+        <h2>Economy Commands</h2>
+        <div class="command-grid">
+          <div class="command-box"><div class="command-title">/balance</div><div class="command-description">Check your account balance</div></div>
+          <div class="command-box"><div class="command-title">/daily</div><div class="command-description">Claim your daily reward</div></div>
+          <div class="command-box"><div class="command-title">/leaderboard</div><div class="command-description">View the top 10 users with the most money</div></div>
+          <div class="command-box"><div class="command-title">/stocks</div><div class="command-description">Check current stocks</div></div>
+          <div class="command-box"><div class="command-title">/buy</div><div class="command-description">Buy items from the Arch Angel market</div></div>
+          <div class="command-box"><div class="command-title">/sell</div><div class="command-description">Sell your stocks for money</div></div>
+          <div class="command-box"><div class="command-title">/portfolio</div><div class="command-description">View your portfolio</div></div>
+        </div>
+
+        <h2>Gambling Commands</h2>
+        <div class="command-grid">
+          <div class="command-box"><div class="command-title">/slots</div><div class="command-description">Play slots and spin for a chance to win!</div></div>
+          <div class="command-box"><div class="command-title">/coinflip</div><div class="command-description">Toss a coin and hope you win!</div></div>
+          <div class="command-box"><div class="command-title">/clicker</div><div class="command-description">Click the button to earn money!</div></div>
+          <div class="command-box"><div class="command-title">/blackjack</div><div class="command-description">Play blackjack to win money!</div></div>
+          <div class="command-box"><div class="command-title">/roll</div><div class="command-description">Roll the dice and win!</div></div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
     async function logout() {
-      window.location.href = "/logout";  // Redirect to logout route
+      // Redirect to logout route
+      window.location.href = "/logout";  
     }
 
-    document.addEventListener('DOMContentLoaded', async () => {
-      const userId = getCookie('user_id');
-      if (userId) {
-        const response = await fetch(`/user/${userId}`);
-        const userData = await response.json();
-        document.getElementById('user-name').textContent = userData.username;
-        document.getElementById('user-avatar').src = userData.avatarUrl;
-        document.getElementById('user-avatar').style.display = 'inline';
-        document.getElementById('log-out-btn').style.display = 'inline';
-        document.getElementById('welcome-name').textContent = userData.username;
-      }
+    document.addEventListener('DOMContentLoaded', () => {
+      // Since we're not fetching user data from backend, we hardcode the user info
+      document.getElementById('user-name').textContent = 'User123#4567';
+      document.getElementById('user-avatar').src = 'https://cdn.discordapp.com/avatars/1234567890/abcdef12345.png';
+      
+      document.getElementById('log-out-btn').style.display = 'inline'; // Show logout button
 
-      const response = await fetch('/commands');
-      const commandsData = await response.json();
-      const commandListContainer = document.getElementById('command-list');
-
-      for (let category in commandsData) {
-        let categoryTitle = document.createElement('h2');
-        categoryTitle.textContent = `${category} Commands`;
-
-        let commandGrid = document.createElement('div');
-        commandsData[category].forEach(command => {
-          let commandBox = document.createElement('div');
-          commandBox.innerHTML = `<div>${command.name}</div><div>${command.description}</div>`;
-          commandGrid.appendChild(commandBox);
-        });
-
-        commandListContainer.appendChild(categoryTitle);
-        commandListContainer.appendChild(commandGrid);
-      }
+      // Show commands by default
+      document.getElementById('commands').style.display = 'block';
     });
-
-    function getCookie(name) {
-      let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-      return match ? match[2] : null;
-    }
   </script>
 </body>
 </html>
