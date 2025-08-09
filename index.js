@@ -255,3 +255,17 @@ app.get('/commands', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+function showPage(pageId) {
+  const sections = document.querySelectorAll('.page-section');
+  sections.forEach(section => section.style.display = 'none');
+  const page = document.getElementById(pageId);
+  if (page) {
+    page.style.display = 'block';
+  }
+}
+
+document.getElementById('show-dashboard').addEventListener('click', () => showPage('dashboard'));
+document.getElementById('show-raid').addEventListener('click', () => showPage('current_raid'));
+document.getElementById('show-commands').addEventListener('click', () => showPage('commands'));
+document.getElementById('show-leaderboard').addEventListener('click', () => showPage('leaderboard'));
