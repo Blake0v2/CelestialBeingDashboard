@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Discord Bot Dashboard</title>
-  <link rel="stylesheet" href="static/style.css" />
+  <title>Arch Angels Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!-- Sidebar -->
@@ -11,9 +11,8 @@
     <img src="https://i.postimg.cc/MHWZgy2W/Untitled-design-7.png" alt="Bot Icon" id="bot-icon" />
     <h2 id="bot-name">Arch Angels</h2>
     
-    <!-- User Login/Logout Status -->
     <div id="user-info">
-      <span id="user-name">User123#4567</span>
+      <span id="user-name">Welcome, Guest</span>
       <img id="user-avatar" src="https://cdn.discordapp.com/avatars/1234567890/abcdef12345.png" alt="User Avatar" style="width: 40px; height: 40px; border-radius: 50%;" />
     </div>
 
@@ -21,64 +20,39 @@
     <button id="show-raid">Current Raid</button>
     <button id="show-commands">Commands</button>
     <button id="show-leaderboard">Leaderboard</button>
-
-    <button id="log-out-btn" style="display: none;">Log Out [➔]</button>
   </div>
 
   <div class="main-content">
     <!-- Dashboard Section -->
-    <div class="page-section" id="dashboard">
-      <div id="welcome">
-        <img src="https://cdn.discordapp.com/avatars/1234567890/abcdef12345.png" alt="User Avatar" id="welcome-avatar"/>
-        <h1>Welcome, User123#4567!</h1>
-        <p>This is our official website, developed by @BlakeO_o.</p>
-        <p>Please support me by joining our discord ➡️<a href="https://discord.com/invite/A6xhTeGKJg" target="_blank">Arch Angels</a></p>
-      </div>
+    <div class="page-section" id="dashboard" style="display: block;">
+      <h1>Welcome to the Arch Angels Dashboard!</h1>
+      <p>This is where you can manage your interactions and view important info.</p>
     </div>
 
-    <!-- Bot Commands Section -->
-    <div class="page-section" id="commands" style="display: block;">
-      <h1>Bot Commands</h1>
-      <div id="command-list">
-        <h2>Economy Commands</h2>
-        <div class="command-grid">
-          <div class="command-box"><div class="command-title">/balance</div><div class="command-description">Check your account balance</div></div>
-          <div class="command-box"><div class="command-title">/daily</div><div class="command-description">Claim your daily reward</div></div>
-          <div class="command-box"><div class="command-title">/leaderboard</div><div class="command-description">View the top 10 users with the most money</div></div>
-          <div class="command-box"><div class="command-title">/stocks</div><div class="command-description">Check current stocks</div></div>
-          <div class="command-box"><div class="command-title">/buy</div><div class="command-description">Buy items from the Arch Angel market</div></div>
-          <div class="command-box"><div class="command-title">/sell</div><div class="command-description">Sell your stocks for money</div></div>
-          <div class="command-box"><div class="command-title">/portfolio</div><div class="command-description">View your portfolio</div></div>
-        </div>
+    <!-- Current Raid Section -->
+    <div class="page-section" id="current_raid" style="display: none;">
+      <h1>Current Raid Status</h1>
+      <p>Stay tuned for updates on the latest raids!</p>
+    </div>
 
-        <h2>Gambling Commands</h2>
-        <div class="command-grid">
-          <div class="command-box"><div class="command-title">/slots</div><div class="command-description">Play slots and spin for a chance to win!</div></div>
-          <div class="command-box"><div class="command-title">/coinflip</div><div class="command-description">Toss a coin and hope you win!</div></div>
-          <div class="command-box"><div class="command-title">/clicker</div><div class="command-description">Click the button to earn money!</div></div>
-          <div class="command-box"><div class="command-title">/blackjack</div><div class="command-description">Play blackjack to win money!</div></div>
-          <div class="command-box"><div class="command-title">/roll</div><div class="command-description">Roll the dice and win!</div></div>
-        </div>
-      </div>
+    <!-- Commands Section -->
+    <div class="page-section" id="commands" style="display: none;">
+      <h1>Bot Commands</h1>
+      <p>Here is a list of commands you can use:</p>
+      <ul>
+        <li>/balance - Check your balance</li>
+        <li>/daily - Claim your daily reward</li>
+        <li>/leaderboard - View the leaderboard</li>
+      </ul>
+    </div>
+
+    <!-- Leaderboard Section -->
+    <div class="page-section" id="leaderboard" style="display: none;">
+      <h1>Leaderboard</h1>
+      <p>View the top players in the Arch Angels community!</p>
     </div>
   </div>
 
-  <script>
-    async function logout() {
-      // Redirect to logout route
-      window.location.href = "/logout";  
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // Since we're not fetching user data from backend, we hardcode the user info
-      document.getElementById('user-name').textContent = 'User123#4567';
-      document.getElementById('user-avatar').src = 'https://cdn.discordapp.com/avatars/1234567890/abcdef12345.png';
-      
-      document.getElementById('log-out-btn').style.display = 'inline'; // Show logout button
-
-      // Show commands by default
-      document.getElementById('commands').style.display = 'block';
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
