@@ -16,18 +16,6 @@
     <button id="show-commands">Commands</button>
     <button id="show-leaderboard">Leaderboard</button>
 
-    <!-- Admin Features (only visible for admin) -->
-    {% if admin %}
-      <button id="show-staff">Staff Commands</button>
-      <button onclick="startRaid('snow')">Start Snow Island Raid</button>
-      <button onclick="startRaid('jungle')">Start Jungle Island Raid</button>
-      <button onclick="startRaid('dedu')">Start Dedu Island Raid</button>
-      <button onclick="stopRaid('snow')">Stop Snow Island Raid</button>
-      <button onclick="stopRaid('jungle')">Stop Jungle Island Raid</button>
-      <button onclick="stopRaid('dedu')">Stop Dedu Island Raid</button>
-    {% endif %}
-  </div>
-
   <!-- Log Out Button at the top-right -->
   <button id="log-out-btn" onclick="logout()">Log Out [➔]</button>
 
