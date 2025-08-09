@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Discord Bot Dashboard</title>
-  <link rel="stylesheet" href="static/style.css" />
+  <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
   <!-- Sidebar -->
@@ -17,7 +17,7 @@
     <button id="show-leaderboard">Leaderboard</button>
 
     <!-- Admin Features (only visible for admin) -->
-    {% if admin %}
+    <% if (admin) { %>
       <button id="show-staff">Staff Commands</button>
       <button onclick="startRaid('snow')">Start Snow Island Raid</button>
       <button onclick="startRaid('jungle')">Start Jungle Island Raid</button>
@@ -25,7 +25,7 @@
       <button onclick="stopRaid('snow')">Stop Snow Island Raid</button>
       <button onclick="stopRaid('jungle')">Stop Jungle Island Raid</button>
       <button onclick="stopRaid('dedu')">Stop Dedu Island Raid</button>
-    {% endif %}
+    <% } %>
   </div>
 
   <!-- Log Out Button at the top-right -->
@@ -35,8 +35,8 @@
     <!-- Dashboard Section -->
     <div class="page-section" id="dashboard">
       <div id="welcome">
-        <img src="{{ user_avatar_url }}" alt="User Avatar" />
-        <h1>Welcome, {{ display_name }}!</h1>
+        <img src="<%= userAvatarUrl %>" alt="User Avatar" />
+        <h1>Welcome, <%= username %>!</h1>
         <p>This is our official website, developed by @BlakeO_o.</p>
         <p>Please show support by joining our discord➡️<a href="https://discord.com/invite/A6xhTeGKJg" target="_blank">Arch Angels</a></p>!
       </div>
@@ -45,21 +45,18 @@
     <!-- Current Raid Section -->
     <div class="page-section" id="current_raid" style="display: none;">
       <h1>Current Raid Status</h1>
-
       <div class="raid-box" id="dedu-island">
         <div class="raid-title">Dedu Island Raid Has Spawned!</div>
         <div class="raid-description">Will you reach the "King"?</div>
         <img src="https://i.postimg.cc/rwSNPy5m/Untitled-design-36.png" alt="Dedu Island" class="raid-image" />
         <div class="raid-footer">Discord.gg/A6xhTeGKJg</div>
       </div>
-
       <div class="raid-box" id="snow-island">
         <div class="raid-title">Snow Island Raid Has Spawned!</div>
         <div class="raid-description">The air turns to frost!</div>
         <img src="https://i.postimg.cc/BZcxGZ6P/Untitled-design-37.png" alt="Snow Island" class="raid-image" />
         <div class="raid-footer">Discord.gg/A6xhTeGKJg</div>
       </div>
-
       <div class="raid-box" id="jungle-island">
         <div class="raid-title">Jungle Island Raid Has Spawned!</div>
         <div class="raid-description">The beast monarch has started his attack!</div>
@@ -71,22 +68,34 @@
     <!-- Bot Commands Section -->
     <div class="page-section" id="commands" style="display: none;">
       <h1>Bot Commands</h1>
-      <div id="command-list"></div> <!-- Dynamically populated by JS -->
+      <div id="command-list">
+        <% Object.keys(commands).forEach(category => { %>
+          <h2><%= category %> Commands</h2>
+          <div class="command-grid">
+            <% commands[category].forEach(command => { %>
+              <div class="command-box">
+                <div class="command-title"><%= command.name %></div>
+                <div class="command-description"><%= command.description %></div>
+              </div>
+            <% }); %>
+          </div>
+        <% }); %>
+      </div>
     </div>
 
     <!-- Staff commands (visible only to admins) -->
-    {% if admin %}
-    <div class="page-section" id="staff" style="display: none;">
-      <h1>Staff Commands</h1>
-      <div class="command-grid">
-        <div class="command-box"><div class="command-title">/kick</div><div class="command-description">Kick a member from the server</div></div>
-        <div class="command-box"><div class="command-title">/ban</div><div class="command-description">Ban a member from the server</div></div>
-        <div class="command-box"><div class="command-title">/warn</div><div class="command-description">Warn a member for their actions</div></div>
-        <div class="command-box"><div class="command-title">/mute</div><div class="command-description">Temporarily mute a member</div></div>
-        <div class="command-box"><div class="command-title">/purge</div><div class="command-description">Delete messages in bulk</div></div>
+    <% if (admin) { %>
+      <div class="page-section" id="staff" style="display: none;">
+        <h1>Staff Commands</h1>
+        <div class="command-grid">
+          <div class="command-box"><div class="command-title">/kick</div><div class="command-description">Kick a member from the server</div></div>
+          <div class="command-box"><div class="command-title">/ban</div><div class="command-description">Ban a member from the server</div></div>
+          <div class="command-box"><div class="command-title">/warn</div><div class="command-description">Warn a member for their actions</div></div>
+          <div class="command-box"><div class="command-title">/mute</div><div class="command-description">Temporarily mute a member</div></div>
+          <div class="command-box"><div class="command-title">/purge</div><div class="command-description">Delete messages in bulk</div></div>
+        </div>
       </div>
-    </div>
-    {% endif %}
+    <% } %>
   </div>
 
   <div class="page-section" id="leaderboard" style="display: none;">
@@ -100,63 +109,14 @@
       window.location.href = "/logout";  // Redirect to logout route
     }
 
-    document.addEventListener('DOMContentLoaded', async () => {
-      // Fetch commands from backend based on user role
-      const response = await fetch('/commands');
-      const commandsData = await response.json();
-      const commandListContainer = document.getElementById('command-list');
-
-      // Populate command categories dynamically
-      for (let category in commandsData) {
-        let categoryTitle = document.createElement('h2');
-        categoryTitle.classList.add('command-category');
-        categoryTitle.textContent = `${category} Commands`;
-
-        let commandGrid = document.createElement('div');
-        commandGrid.classList.add('command-grid');
-        
-        commandsData[category].forEach(command => {
-          let commandBox = document.createElement('div');
-          commandBox.classList.add('command-box');
-          commandBox.innerHTML = `<div class="command-title">${command.name}</div><div class="command-description">${command.description}</div>`;
-          commandGrid.appendChild(commandBox);
-        });
-
-        commandListContainer.appendChild(categoryTitle);
-        commandListContainer.appendChild(commandGrid);
-      }
-    });
-
     document.addEventListener('DOMContentLoaded', () => {
       const sections = document.querySelectorAll('.page-section');
-      const raidBoxes = document.querySelectorAll('.raid-box');
 
       function showPage(pageId) {
         sections.forEach(section => section.style.display = 'none');
         const page = document.getElementById(pageId);
         if (page) {
           page.style.display = 'block';
-        }
-
-        if (pageId === 'current_raid') {
-          updateRaidStatus(); // force update when opening raids
-        }
-      }
-
-      function updateRaidStatus() {
-        const currentMinute = new Date().getMinutes();
-
-        // Reset all raid boxes to be hidden
-        raidBoxes.forEach(box => box.style.display = 'none');
-
-        // Show active raids based on the time
-        if (currentMinute >= 15 && currentMinute < 30) {
-          document.getElementById('dedu-island').style.display = 'block';
-          document.getElementById('jungle-island').style.display = 'block';  // Show Jungle Island as well
-        } else if (currentMinute >= 30 && currentMinute < 45) {
-          document.getElementById('snow-island').style.display = 'block';
-        } else if (currentMinute >= 0 && currentMinute < 15) {
-          document.getElementById('jungle-island').style.display = 'block';
         }
       }
 
@@ -165,12 +125,7 @@
       document.getElementById('show-commands').addEventListener('click', () => showPage('commands'));
       document.getElementById('show-leaderboard').addEventListener('click', () => showPage('leaderboard'));
 
-      const staffButton = document.getElementById('show-staff');
-      if (staffButton) {
-        staffButton.addEventListener('click', () => showPage('staff'));
-      }
-
-      showPage('dashboard'); // Default
+      showPage('dashboard'); // Default page
     });
   </script>
 </body>
