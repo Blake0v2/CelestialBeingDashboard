@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Arch Angels Dashboard</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arch Angels Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <img src="https://i.postimg.cc/MHWZgy2W/Untitled-design-7.png" alt="Bot Icon" id="bot-icon" />
-    <h2 id="bot-name">Arch Angels</h2>
-    
-    <div id="user-info">
-      <span id="user-name">Welcome, Guest</span>
-      <img id="user-avatar" src="https://cdn.discordapp.com/avatars/1234567890/abcdef12345.png" alt="User Avatar" style="width: 40px; height: 40px; border-radius: 50%;" />
+    <!-- OAuth2 Login Container -->
+    <div id="oauth-container">
+        <a href="/auth/discord" id="login-button">Log In with Discord</a>
     </div>
 
-    <button id="show-dashboard">Dashboard</button>
-    <button id="show-raid">Current Raid</button>
-    <button id="show-commands">Commands</button>
-    <button id="show-leaderboard">Leaderboard</button>
-  </div>
+    <!-- App Content (hidden until OAuth2 login is completed) -->
+    <div id="app-container" class="hidden">
+        <div class="sidebar">
+            <img src="https://i.postimg.cc/MHWZgy2W/Untitled-design-7.png" alt="Logo" class="logo">
+            <button onclick="showSection('dashboard')">Dashboard</button>
+            <button onclick="showSection('commands')">Commands</button>
+            <button onclick="showSection('current-raid')">Current Raid</button>
+            <button onclick="showSection('leaderboard')">Leaderboard</button>
+        </div>
 
-  <div class="main-content">
-    <!-- Dashboard Section -->
-    <div class="page-section" id="dashboard" style="display: block;">
-      <h1>Welcome to the Arch Angels Dashboard!</h1>
-      <p>This is where you can manage your interactions and view important info.</p>
+        <div class="main-content">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section">
+                <div class="content-box">
+                    <img id="avatar" src="" alt="User Avatar">
+                    <h2 id="user-welcome"></h2>
+                    <p>This is our official website, developed by @BlakeO_o.</p>
+                    <p>Please show support by joining our Discord <a href="https://discord.gg/A6xhTeGKJg">Arch Angels</a></p>!
+                </div>
+            </div>
+
+            <!-- Commands Section -->
+            <div id="commands" class="section hidden">
+                <h3>Commands:</h3>
+                <ul id="commands-list">
+                    <!-- Populate commands dynamically -->
+                </ul>
+            </div>
+
+            <!-- Current Raid Section -->
+            <div id="current-raid" class="section hidden">
+                <h3>Current Raid</h3>
+                <p>Details coming soon...</p>
+            </div>
+
+            <!-- Leaderboard Section -->
+            <div id="leaderboard" class="section hidden">
+                <h3>Leaderboard</h3>
+                <ul id="leaderboard-list">
+                    <!-- Populate leaderboard dynamically -->
+                </ul>
+            </div>
+        </div>
     </div>
-
-    <!-- Current Raid Section -->
-    <div class="page-section" id="current_raid" style="display: none;">
-      <h1>Current Raid Status</h1>
-      <p>Stay tuned for updates on the latest raids!</p>
-    </div>
-
-    <!-- Commands Section -->
-    <div class="page-section" id="commands" style="display: none;">
-      <h1>Bot Commands</h1>
-      <p>Here is a list of commands you can use:</p>
-      <ul>
-        <li>/balance - Check your balance</li>
-        <li>/daily - Claim your daily reward</li>
-        <li>/leaderboard - View the leaderboard</li>
-      </ul>
-    </div>
-
-    <!-- Leaderboard Section -->
-    <div class="page-section" id="leaderboard" style="display: none;">
-      <h1>Leaderboard</h1>
-      <p>View the top players in the Arch Angels community!</p>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
