@@ -40,7 +40,6 @@ app.get('/login', (req, res) => {
   res.redirect(discordOAuthURL);
 });
 
-// Callback Route to handle OAuth callback and retrieve user data
 app.get('/callback', async (req, res) => {
   const { code } = req.query;
 
@@ -67,7 +66,7 @@ app.get('/callback', async (req, res) => {
     const userResponse = await axios.get(`${DISCORD_API_BASE}/users/@me`, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
-    
+
     const user = userResponse.data;
 
     // Fetch Member Info from the Guild
@@ -98,7 +97,7 @@ app.get('/callback', async (req, res) => {
   }
 });
 
-// Dashboard Route
+//dashboard
 app.get('/dashboard', (req, res) => {
   const userId = req.cookies.user_id;
   if (!userId || !sessions[userId]) {
