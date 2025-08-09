@@ -23,18 +23,6 @@
     <button id="show-commands">Commands</button>
     <button id="show-leaderboard">Leaderboard</button>
 
-    <!-- Admin Features (only visible for admin) -->
-    {% if admin %}
-      <button id="show-staff">Staff Commands</button>
-      <button onclick="startRaid('snow')">Start Snow Island Raid</button>
-      <button onclick="startRaid('jungle')">Start Jungle Island Raid</button>
-      <button onclick="startRaid('dedu')">Start Dedu Island Raid</button>
-      <button onclick="stopRaid('snow')">Stop Snow Island Raid</button>
-      <button onclick="stopRaid('jungle')">Stop Jungle Island Raid</button>
-      <button onclick="stopRaid('dedu')">Stop Dedu Island Raid</button>
-    {% endif %}
-  </div>
-
   <!-- Log Out Button at the top-right -->
   <button id="log-out-btn" onclick="logout()" style="display: none;">Log Out [➔]</button>
 
@@ -45,7 +33,7 @@
         <img src="{{ user_avatar_url }}" alt="User Avatar" />
         <h1>Welcome, {{ display_name }}!</h1>
         <p>This is our official website, developed by @BlakeO_o.</p>
-        <p>Please support me by joining our discord➡️<a href="https://discord.com/invite/A6xhTeGKJg" target="_blank">Arch Angels</a></p>
+        <p>Please support me by joining our discord➡️<a href="https://discord.com/invite/A6xhTeGKJg" target="_blank">Arch Angels</a></p>!
       </div>
     </div>
 
@@ -82,7 +70,7 @@
     </div>
 
     <!-- Staff commands (visible only to admins) -->
-    {% if admin %}
+    {% if (admin) %}
     <div class="page-section" id="staff" style="display: none;">
       <h1>Staff Commands</h1>
       <div class="command-grid">
