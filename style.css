@@ -1,21 +1,20 @@
-/* Ensure the body takes full height and uses flexbox for layout */
+/* Body and Layout */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(145deg, #293b75, #ffffff); /* Unified gradient background */
-  color: #ffffff;
   display: flex;
-  justify-content: flex-start; /* Align content left */
-  align-items: stretch; /* Stretch the content */
+  justify-content: flex-start;
+  align-items: flex-start;
+  background: linear-gradient(145deg, #5e6a94, #b0c5d7); /* Soft gradient background */
 }
 
 /* Sidebar Styling */
 .sidebar {
   width: 220px;
   height: 100vh;
-  background: linear-gradient(145deg, #FFB300, #FF6A00); /* Yellow/Orange gradient */
+  background: linear-gradient(145deg, #FFB300, #FF6A00); /* Orange gradient */
   padding: 20px;
   position: fixed;
   top: 0;
@@ -24,15 +23,14 @@ html, body {
   border-radius: 10px;
   overflow-y: auto;
   display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .sidebar h2 {
   color: white;
   font-size: 22px;
   margin-bottom: 20px;
-  text-align: center;
 }
 
 .sidebar button {
@@ -52,39 +50,58 @@ html, body {
   background-color: #3a4e8d;
 }
 
-.sidebar #bot-name {
-  font-size: 25px;
-  color: #fff;
-  margin-top: 20px;
-}
-
-.sidebar #bot-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Main content */
+/* Main Content Styling */
 .main-content {
-  margin-left: 240px; /* Shift content to the right to make space for sidebar */
+  margin-left: 240px; /* Create space for the sidebar */
   padding: 20px;
   width: calc(100% - 240px);
+  background-color: #f4f6fc; /* Light background for main content */
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh; /* Ensure content area takes full screen */
-  background-color: #f0f0f0; /* Light background for content area */
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* User Info Card */
+#welcome {
+  background: #2e3b4e; /* Dark background for user info card */
+  padding: 40px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+}
+
+#welcome img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+#welcome h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+#welcome p {
+  font-size: 18px;
+  color: #b0b0b0;
+}
+
+#welcome a {
+  color: #1e90ff;
+  text-decoration: none;
 }
 
 /* Section Styling */
 .page-section {
   display: none;
   padding: 20px;
-  margin-top: 20px;
 }
 
 .page-section.active {
@@ -103,63 +120,19 @@ html, body {
   }
 }
 
-/* Raid Box Styles */
-.raid-box {
-  display: none;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-  margin-bottom: 20px;
-  color: #fff;
-  text-align: center;
-  width: 100%;
-  max-width: 800px;
-  margin: 10px auto;
-  box-sizing: border-box;
+/* Button Styling for Log Out */
+#log-out-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.raid-image {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.raid-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.raid-description {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.raid-footer {
-  font-size: 16px;
-  font-weight: bold;
-  color: #b0b0b0;
-}
-
-/* Mobile Responsiveness */
-@media screen and (max-width: 768px) {
-  .sidebar {
-    width: 180px;
-  }
-
-  .main-content {
-    margin-left: 180px;
-    width: calc(100% - 180px);
-  }
-
-  .command-box {
-    width: 90%;
-  }
-
-  .command-grid {
-    flex-direction: column;
-    align-items: center;
-  }
+#log-out-btn:hover {
+  background-color: #FFB300;
 }
