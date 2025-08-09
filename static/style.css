@@ -115,13 +115,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
-  border-radius: 15px;
-  padding: 40px;
-  text-align: center;
-  margin-top: 80px;
-  width: 100%;
-  max-width: 605px;
+  background-color: #2f2f2f;
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  max-width: 600px;
+  margin: 30px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #welcome img {
@@ -132,12 +132,23 @@ body {
 }
 
 #welcome h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
+  font-size: 2rem;
+  margin: 10px 0;
 }
 
 #welcome p {
-  font-size: 18px;
+  font-size: 1rem;
+  text-align: center;
+  margin: 5px 0;
+}
+
+#welcome a {
+  color: #4fa3f7;
+  text-decoration: none;
+}
+
+#welcome a:hover {
+  text-decoration: underline;
 }
 
 #current_raid,
@@ -308,4 +319,5 @@ body {
     align-items: center;
   }
 }
+
 
