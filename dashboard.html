@@ -64,21 +64,6 @@
       <div id="command-list"></div> <!-- Dynamically populated by JS -->
     </div>
 
-    <!-- Staff commands (visible only to admins) -->
-    {% if (admin) %}
-    <div class="page-section" id="staff" style="display: none;">
-      <h1>Staff Commands</h1>
-      <div class="command-grid">
-        <div class="command-box"><div class="command-title">/kick</div><div class="command-description">Kick a member from the server</div></div>
-        <div class="command-box"><div class="command-title">/ban</div><div class="command-description">Ban a member from the server</div></div>
-        <div class="command-box"><div class="command-title">/warn</div><div class="command-description">Warn a member for their actions</div></div>
-        <div class="command-box"><div class="command-title">/mute</div><div class="command-description">Temporarily mute a member</div></div>
-        <div class="command-box"><div class="command-title">/purge</div><div class="command-description">Delete messages in bulk</div></div>
-      </div>
-    </div>
-    {% endif %}
-  </div>
-
   <div class="page-section" id="leaderboard" style="display: none;">
     <h1>🏆 Leaderboard</h1>
     <div id="leaderboard-container">Loading...</div>
