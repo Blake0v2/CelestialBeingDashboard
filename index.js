@@ -36,17 +36,18 @@ app.get('/', (req, res) => {
 
 // Login Route to initiate OAuth
 app.get('/login', (req, res) => {
-  const discordOAuthURL = `${DISCORD_API_BASE}/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=identify%20guilds%20guilds.members.read`;
+  const discordOAuthURL = ${DISCORD_API_BASE}/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=identify%20guilds%20guilds.members.read;
   res.redirect(discordOAuthURL);
 });
 
+// Callback Route to handle OAuth callback and retrieve user data
 app.get('/callback', async (req, res) => {
   const { code } = req.query;
 
   try {
     // Get Access Token
     const tokenResponse = await axios.post(
-      `${DISCORD_API_BASE}/oauth2/token`,
+      ${DISCORD_API_BASE}/oauth2/token,
       new URLSearchParams({
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
@@ -63,15 +64,15 @@ app.get('/callback', async (req, res) => {
     }
 
     // Fetch User Info
-    const userResponse = await axios.get(`${DISCORD_API_BASE}/users/@me`, {
-      headers: { Authorization: `Bearer ${accessToken}` },
+    const userResponse = await axios.get(${DISCORD_API_BASE}/users/@me, {
+      headers: { Authorization: Bearer ${accessToken} },
     });
-
+    
     const user = userResponse.data;
 
     // Fetch Member Info from the Guild
-    const memberResponse = await axios.get(`${DISCORD_API_BASE}/guilds/${GUILD_ID}/members/${user.id}`, {
-      headers: { Authorization: `Bearer ${accessToken}` },
+    const memberResponse = await axios.get(${DISCORD_API_BASE}/guilds/${GUILD_ID}/members/${user.id}, {
+      headers: { Authorization: Bearer ${accessToken} },
     });
 
     const memberData = memberResponse.data;
@@ -80,7 +81,7 @@ app.get('/callback', async (req, res) => {
     const isAdmin = userRoles.some(role => ADMIN_ROLE_IDS.includes(role));
     const isOwner = userId === memberData.guild.owner_id;
 
-    const userAvatarUrl = `https://cdn.discordapp.com/avatars/${userId}/${user.avatar}.png`;
+    const userAvatarUrl = https://cdn.discordapp.com/avatars/${userId}/${user.avatar}.png;
 
     // Store session data
     sessions[userId] = {
@@ -91,13 +92,13 @@ app.get('/callback', async (req, res) => {
     };
 
     res.cookie('user_id', userId); // Store user_id in cookie
-    res.redirect(`/dashboard?user_id=${userId}`);
+    res.redirect(/dashboard?user_id=${userId});
   } catch (error) {
     res.status(500).send('Internal Server Error');
   }
 });
 
-//dashboard
+// Dashboard Route
 app.get('/dashboard', (req, res) => {
   const userId = req.cookies.user_id;
   if (!userId || !sessions[userId]) {
@@ -108,7 +109,7 @@ app.get('/dashboard', (req, res) => {
   const commands = userData.admin ? getAdminCommands() : getUserCommands();
 
   res.render('dashboard', {
-    username: `${userData.username}#${userData.discriminator}`,
+    username: ${userData.username}#${userData.discriminator},
     admin: userData.admin,
     commands: commands,
     userAvatarUrl: userData.avatarUrl
@@ -230,7 +231,7 @@ app.get('/leaderboard', async (req, res) => {
   const leaderboard = topUsers.map(([userId, userInfo], idx) => {
     return {
       rank: idx + 1,
-      name: `${userInfo.username}#${userInfo.discriminator}`,
+      name: ${userInfo.username}#${userInfo.discriminator},
       balance: userInfo.balance || 0
     };
   });
@@ -252,5 +253,5 @@ app.get('/commands', (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(Server running at http://localhost:${port});
 });
