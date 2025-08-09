@@ -50,6 +50,7 @@ app.get('/login', (req, res) => {
 
 // Callback Route to handle OAuth callback and retrieve user data
 app.get('/callback', async (req, res) => {
+  console.log(userId);  // Ensure user_id is being extracted and used correctly
   const { code } = req.query;
 
   try {
@@ -103,25 +104,34 @@ app.get('/callback', async (req, res) => {
     res.redirect(`/dashboard?user_id=${userId}`); // Redirect to the dashboard with user info
   } catch (error) {
     res.status(500).send('Internal Server Error');
+
+    const user = userResponse.data;
+    console.log("User Info from Discord:", user);  // Log the user info
+    
+    const memberData = memberResponse.data;
+    console.log("Member Info from Guild:", memberData);  // Log the member info
   }
 });
 
-// Dashboard Route
+//dashboard
 app.get('/dashboard', (req, res) => {
   const userId = req.cookies.user_id;
+  console.log("User ID from cookie:", userId);  // Log the user ID
   if (!userId || !sessions[userId]) {
     return res.redirect('/login');
   }
 
   const userData = sessions[userId];
+  console.log("User Data:", userData);  // Log the user data
   const commands = userData.admin ? getAdminCommands() : getUserCommands();
 
   res.render('dashboard', {
     username: `${userData.username}#${userData.discriminator}`,
     admin: userData.admin,
     userAvatarUrl: userData.avatarUrl,
-    displayName: userData.username,  // Or however you'd like to set the display name
+    displayName: userData.username,
   });
+});
 
 // Logout Route
 app.get('/logout', (req, res) => {
