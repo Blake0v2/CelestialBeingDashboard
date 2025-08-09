@@ -11,7 +11,7 @@ const port = 8000;
 // Discord Bot Setup
 const CLIENT_ID = '1389852325648007290';
 const CLIENT_SECRET = 'dWOJvWCWiFWTKiw7xmrQa1iLoY7Pd6Ng';
-const REDIRECT_URI = 'https://discord.com/oauth2/authorize?client_id=1389852325648007290&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fapi%2Fauth%2Fdiscord%2Fredirect&scope=identify';
+const REDIRECT_URI = 'https://blake0v2.github.io/TheArchAngels/dashboard.html'; // Updated redirect URI
 const GUILD_ID = '1365848012194316312';
 const ADMIN_ROLE_IDS = ['1365851423081762897', '1390148617091678300'];
 const DISCORD_API_BASE = 'https://discord.com/api';
@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 
 // Login Route to initiate OAuth
 app.get('/login', (req, res) => {
-  const discordOAuthURL = `${DISCORD_API_BASE}/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=identify%20guilds%20guilds.members.read`;
+  const discordOAuthURL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=identify%20guilds%20guilds.members.read`;
   res.redirect(discordOAuthURL);
 });
 
@@ -54,7 +54,7 @@ app.get('/callback', async (req, res) => {
         grant_type: 'authorization_code',
         code,
         redirect_uri: REDIRECT_URI,
-        scope: 'identify guilds guilds.members.read'
+        scope: 'identify guilds guilds.members.read',
       })
     );
 
@@ -67,7 +67,7 @@ app.get('/callback', async (req, res) => {
     const userResponse = await axios.get(`${DISCORD_API_BASE}/users/@me`, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
-    
+
     const user = userResponse.data;
 
     // Fetch Member Info from the Guild
@@ -231,13 +231,6 @@ app.get('/leaderboard', async (req, res) => {
   const leaderboard = topUsers.map(([userId, userInfo], idx) => {
     return {
       rank: idx + 1,
-      name: `${userInfo.username}#${userInfo.discriminator}`,
-      balance: userInfo.balance || 0
-    };
-  });
-
-  res.json(leaderboard);
-});
 
 app.get('/commands', (req, res) => {
   const userId = req.cookies.user_id;
@@ -249,9 +242,4 @@ app.get('/commands', (req, res) => {
   const commands = userData.admin ? getAdminCommands() : getUserCommands();
 
   res.json(commands);
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
 });
