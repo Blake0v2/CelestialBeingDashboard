@@ -29,13 +29,21 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'templates'));
 
-// Redirect to Login
+// Redirect to Login (Landing page)
 app.get('/', (req, res) => {
+  // If the user is logged in (cookie exists), show the dashboard directly
+  const userId = req.cookies.user_id;
+  if (userId && sessions[userId]) {
+    return res.redirect('/dashboard');  // If the user is already logged in, go to the dashboard
+  }
+
+  // Otherwise, redirect to the OAuth2 login page
   res.redirect('/login');
 });
 
 // Login Route to initiate OAuth
 app.get('/login', (req, res) => {
+  // Here we generate the OAuth2 URL dynamically using your credentials
   const discordOAuthURL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=identify%20guilds%20guilds.members.read`;
   res.redirect(discordOAuthURL);
 });
@@ -45,7 +53,7 @@ app.get('/callback', async (req, res) => {
   const { code } = req.query;
 
   try {
-    // Get Access Token
+    // Exchange code for access token
     const tokenResponse = await axios.post(
       `${DISCORD_API_BASE}/oauth2/token`,
       new URLSearchParams({
@@ -63,14 +71,14 @@ app.get('/callback', async (req, res) => {
       return res.status(401).send('Authentication failed.');
     }
 
-    // Fetch User Info
+    // Fetch user info using the access token
     const userResponse = await axios.get(`${DISCORD_API_BASE}/users/@me`, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
 
     const user = userResponse.data;
 
-    // Fetch Member Info from the Guild
+    // Fetch member info from the guild
     const memberResponse = await axios.get(`${DISCORD_API_BASE}/guilds/${GUILD_ID}/members/${user.id}`, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
@@ -92,7 +100,7 @@ app.get('/callback', async (req, res) => {
     };
 
     res.cookie('user_id', userId); // Store user_id in cookie
-    res.redirect(`/dashboard?user_id=${userId}`);
+    res.redirect(`/dashboard?user_id=${userId}`); // Redirect to the dashboard with user info
   } catch (error) {
     res.status(500).send('Internal Server Error');
   }
