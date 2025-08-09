@@ -11,6 +11,13 @@
     <!-- Bot icon manually set -->
     <img src="https://i.postimg.cc/MHWZgy2W/Untitled-design-7.png" alt="Bot Icon" id="bot-icon" />
     <h2 id="bot-name">Arch Angels</h2>
+    
+    <!-- User Login/Logout Status -->
+    <div id="user-info">
+      <span id="user-name">Not logged in</span>
+      <img id="user-avatar" src="" alt="User Avatar" style="display: none; width: 40px; height: 40px; border-radius: 50%;" />
+    </div>
+
     <button id="show-dashboard">Dashboard</button>
     <button id="show-raid">Current Raid</button>
     <button id="show-commands">Commands</button>
@@ -29,7 +36,7 @@
   </div>
 
   <!-- Log Out Button at the top-right -->
-  <button id="log-out-btn" onclick="logout()">Log Out [➔]</button>
+  <button id="log-out-btn" onclick="logout()" style="display: none;">Log Out [➔]</button>
 
   <div class="main-content">
     <!-- Dashboard Section -->
@@ -96,11 +103,25 @@
 
   <!-- JS Scripts -->
   <script>
-    function logout() {
+    async function logout() {
       window.location.href = "/logout";  // Redirect to logout route
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
+      // Fetch user info from the session
+      const userId = getCookie('user_id');
+      if (userId) {
+        const response = await fetch(`/user/${userId}`);
+        const userData = await response.json();
+        document.getElementById('user-name').textContent = userData.username;
+        document.getElementById('user-avatar').src = userData.avatarUrl;
+        document.getElementById('user-avatar').style.display = 'inline';
+        document.getElementById('log-out-btn').style.display = 'inline';
+      } else {
+        document.getElementById('user-name').textContent = 'Not logged in';
+        document.getElementById('log-out-btn').style.display = 'none';
+      }
+
       // Fetch commands from backend based on user role
       const response = await fetch('/commands');
       const commandsData = await response.json();
@@ -110,7 +131,7 @@
       for (let category in commandsData) {
         let categoryTitle = document.createElement('h2');
         categoryTitle.classList.add('command-category');
-        categoryTitle.textContent = ${category} Commands;
+        categoryTitle.textContent = `${category} Commands`;
 
         let commandGrid = document.createElement('div');
         commandGrid.classList.add('command-grid');
@@ -118,16 +139,15 @@
         commandsData[category].forEach(command => {
           let commandBox = document.createElement('div');
           commandBox.classList.add('command-box');
-          commandBox.innerHTML = <div class="command-title">${command.name}</div><div class="command-description">${command.description}</div>;
+          commandBox.innerHTML = `<div class="command-title">${command.name}</div><div class="command-description">${command.description}</div>`;
           commandGrid.appendChild(commandBox);
         });
 
         commandListContainer.appendChild(categoryTitle);
         commandListContainer.appendChild(commandGrid);
       }
-    });
 
-    document.addEventListener('DOMContentLoaded', () => {
+      // Show page sections dynamically
       const sections = document.querySelectorAll('.page-section');
       const raidBoxes = document.querySelectorAll('.raid-box');
 
@@ -172,6 +192,12 @@
 
       showPage('dashboard'); // Default
     });
+
+    // Helper function to get cookies
+    function getCookie(name) {
+      let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      return match ? match[2] : null;
+    }
   </script>
 </body>
 </html>
