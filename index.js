@@ -119,10 +119,9 @@ app.get('/dashboard', (req, res) => {
   res.render('dashboard', {
     username: `${userData.username}#${userData.discriminator}`,
     admin: userData.admin,
-    commands: commands,
-    userAvatarUrl: userData.avatarUrl
+    userAvatarUrl: userData.avatarUrl,
+    displayName: userData.username,  // Or however you'd like to set the display name
   });
-});
 
 // Logout Route
 app.get('/logout', (req, res) => {
