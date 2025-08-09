@@ -1,39 +1,61 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Handle button clicks to show corresponding sections
-  const showDashboardButton = document.getElementById('show-dashboard');
-  const showRaidButton = document.getElementById('show-raid');
-  const showCommandsButton = document.getElementById('show-commands');
-  const showLeaderboardButton = document.getElementById('show-leaderboard');
+const express = require('express');
+const axios = require('axios');
+const querystring = require('querystring');
+const app = express();
 
-  const dashboardSection = document.getElementById('dashboard');
-  const currentRaidSection = document.getElementById('current_raid');
-  const commandsSection = document.getElementById('commands');
-  const leaderboardSection = document.getElementById('leaderboard');
+// Your Discord OAuth2 credentials
+const CLIENT_ID = 'YOUR_CLIENT_ID';
+const CLIENT_SECRET = 'YOUR_CLIENT_SECRET';
+const REDIRECT_URI = 'http://localhost:3000/auth/discord/callback';
+const DISCORD_API_URL = 'https://discord.com/api/v10';
 
-  showDashboardButton.addEventListener('click', () => {
-    hideAllSections();
-    dashboardSection.style.display = 'block';
-  });
+app.get('/auth/discord', (req, res) => {
+    const authUrl = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=identify`;
+    res.redirect(authUrl);
+});
 
-  showRaidButton.addEventListener('click', () => {
-    hideAllSections();
-    currentRaidSection.style.display = 'block';
-  });
+app.get('/auth/discord/callback', async (req, res) => {
+    const { code } = req.query;
 
-  showCommandsButton.addEventListener('click', () => {
-    hideAllSections();
-    commandsSection.style.display = 'block';
-  });
+    try {
+        // Exchange the code for an access token
+        const tokenResponse = await axios.post(
+            'https://discord.com/api/v10/oauth2/token',
+            querystring.stringify({
+                client_id: CLIENT_ID,
+                client_secret: CLIENT_SECRET,
+                code,
+                grant_type: 'authorization_code',
+                redirect_uri: REDIRECT_URI,
+                scope: 'identify'
+            }),
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }
+        );
 
-  showLeaderboardButton.addEventListener('click', () => {
-    hideAllSections();
-    leaderboardSection.style.display = 'block';
-  });
+        const accessToken = tokenResponse.data.access_token;
 
-  function hideAllSections() {
-    dashboardSection.style.display = 'none';
-    currentRaidSection.style.display = 'none';
-    commandsSection.style.display = 'none';
-    leaderboardSection.style.display = 'none';
-  }
+        // Use the access token to get the user's information
+        const userResponse = await axios.get(`${DISCORD_API_URL}/users/@me`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+
+        const user = userResponse.data;
+        const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+
+        // Pass user data to the frontend
+        res.json({ username: user.username, avatarUrl });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Authentication failed');
+    }
+});
+
+app.listen(3000, () => {
+    console.log('Server running on http://localhost:3000');
 });
