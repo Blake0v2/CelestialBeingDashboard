@@ -1,23 +1,21 @@
-/* Apply the background gradient properly */
+/* Ensure the body takes full height and uses flexbox for layout */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background: linear-gradient(145deg, #293b75, #ffffff); /* Unified gradient background */
   font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(145deg, #293b75, #ffffff); /* Unified gradient background */
   color: #ffffff;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  justify-content: flex-start; /* Align content left */
+  align-items: stretch; /* Stretch the content */
 }
 
-/* Sidebar Styles */
+/* Sidebar Styling */
 .sidebar {
   width: 220px;
   height: 100vh;
   background: linear-gradient(145deg, #FFB300, #FF6A00); /* Yellow/Orange gradient */
-  border: 1px solid #ffffff;
   padding: 20px;
   position: fixed;
   top: 0;
@@ -25,12 +23,16 @@ html, body {
   box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center;
 }
 
 .sidebar h2 {
   color: white;
+  font-size: 22px;
   margin-bottom: 20px;
-  font-size: 18px;
+  text-align: center;
 }
 
 .sidebar button {
@@ -54,7 +56,6 @@ html, body {
   font-size: 25px;
   color: #fff;
   margin-top: 20px;
-  text-align: center;
 }
 
 .sidebar #bot-icon {
@@ -67,37 +68,23 @@ html, body {
   margin-right: auto;
 }
 
-/* Log Out Button at top-right */
-#log-out-btn {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  background-color: #ff0000;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-#log-out-btn:hover {
-  background-color: #FFB300;
-}
-
 /* Main content */
 .main-content {
-  margin-left: 250px;
+  margin-left: 240px; /* Shift content to the right to make space for sidebar */
   padding: 20px;
-  width: calc(100% - 250px);
+  width: calc(100% - 240px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100%; /* Ensure content area takes up full screen */
+  min-height: 100vh; /* Ensure content area takes full screen */
+  background-color: #f0f0f0; /* Light background for content area */
 }
 
+/* Section Styling */
 .page-section {
   display: none;
   padding: 20px;
+  margin-top: 20px;
 }
 
 .page-section.active {
@@ -116,97 +103,10 @@ html, body {
   }
 }
 
-/* Welcome Section */
-#welcome {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
-  border-radius: 15px;
-  padding: 40px;
-  text-align: center;
-  margin-top: 80px;
-  width: 100%;
-  max-width: 605px;
-}
-
-#welcome img {
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  margin-bottom: 20px;
-}
-
-#welcome h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-#welcome p {
-  font-size: 18px;
-}
-
-/* Section Styling */
-#current_raid,
-#commands,
-#leaderboard {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-  width: 100%;
-  max-width: 800px;
-  margin-top: 40px;
-}
-
-/* Command Category and Box Styles */
-.command-category {
-  font-size: 22px;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-  padding-bottom: 5px;
-  text-align: center;
-}
-
-.command-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
-}
-
-.command-box {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 12px;
-  width: 200px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(4px);
-  color: #ffffff;
-  transition: transform 0.2s ease-in-out;
-  text-align: center;
-}
-
-.command-box:hover {
-  transform: scale(1.02);
-}
-
-.command-title {
-  font-weight: bold;
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-
-.command-description {
-  font-size: 12px;
-  opacity: 0.8;
-}
-
 /* Raid Box Styles */
 .raid-box {
   display: none;
-  padding: 40px;
+  padding: 20px;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
   margin-bottom: 20px;
@@ -243,28 +143,12 @@ html, body {
   color: #b0b0b0;
 }
 
-/* Raid Color Themes */
-#jungle-island {
-  background: #38a351;
-  border: 2px solid #6b7e6b8c;
-}
-
-#snow-island {
-  background: #96d3f7;
-  border: 2px solid #467296a1;
-}
-
-#dedu-island {
-  background: #701313;
-  border: 2px solid #f7000077;
-}
-
 /* Mobile Responsiveness */
 @media screen and (max-width: 768px) {
   .sidebar {
     width: 180px;
   }
-  
+
   .main-content {
     margin-left: 180px;
     width: calc(100% - 180px);
@@ -277,11 +161,5 @@ html, body {
   .command-grid {
     flex-direction: column;
     align-items: center;
-  }
-
-  /* Ensure raid boxes fit well */
-  .raid-box {
-    width: 100%;
-    max-width: 100%; /* Ensure they fill the screen */
   }
 }
