@@ -1,17 +1,18 @@
-/* Base styles */
-body {
-  display: flex;
+/* Apply the background gradient properly */
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
   background: linear-gradient(145deg, #293b75, #ffffff); /* Unified gradient background */
   font-family: 'Segoe UI', sans-serif;
   color: #ffffff;
-  height: 100vh;
+  display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
 
+/* Sidebar Styles */
 .sidebar {
   width: 220px;
   height: 100vh;
@@ -91,6 +92,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100%; /* Ensure content area takes up full screen */
 }
 
 .page-section {
@@ -281,25 +283,5 @@ body {
   .raid-box {
     width: 100%;
     max-width: 100%; /* Ensure they fill the screen */
-  }
-}
-
-/* MOBILE RESPONSIVENESS */
-@media screen and (max-width: 768px) {
-  .sidebar {
-    width: 180px;
-  }
-  .main-content {
-    margin-left: 180px;
-    width: calc(100% - 180px);
-  }
-
-  .command-box {
-    width: 90%; /* Full width on smaller screens */
-  }
-
-  .command-grid {
-    flex-direction: column;
-    align-items: center;
   }
 }
