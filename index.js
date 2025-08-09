@@ -11,7 +11,7 @@ const port = 8000;
 // Discord Bot Setup
 const CLIENT_ID = '1389852325648007290';
 const CLIENT_SECRET = 'dWOJvWCWiFWTKiw7xmrQa1iLoY7Pd6Ng';
-const REDIRECT_URI = 'https://blake0v2.github.io/TheArchAngels/dashboard.html'; // Updated redirect URI
+const REDIRECT_URI = 'https://discord.com/oauth2/authorize?client_id=1389852325648007290&response_type=code&redirect_uri=https%3A%2F%2Fblake0v2.github.io%2FTheArchAngels%2Fdashboard.html&scope=identify'; // Updated redirect URI
 const GUILD_ID = '1365848012194316312';
 const ADMIN_ROLE_IDS = ['1365851423081762897', '1390148617091678300'];
 const DISCORD_API_BASE = 'https://discord.com/api';
