@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #e4bf67, #10233e);
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #242322;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.sidebar .bot-icon img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 30px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-btn {
+    width: 100%;
+    padding: 15px;
+    background: #333;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.menu-btn:hover {
+    background: #e4bf67;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    color: white;
+    overflow-y: auto;
+}
+
+.page {
+    display: none;
+}
+
+.page:first-child {
+    display: block;
+}
