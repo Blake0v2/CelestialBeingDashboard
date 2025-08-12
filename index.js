@@ -1,9 +1,68 @@
 // OAuth2 Authentication
 window.onload = function() {
-  if (!localStorage.getItem('discord_user')) {
+  // Check if the user is authenticated
+  const user = localStorage.getItem('discord_user');
+  
+  if (!user) {
+    // If no user info, redirect to OAuth2 for authentication
     window.location.href = 'https://discord.com/oauth2/authorize?client_id=1404595445275164804&response_type=code&redirect_uri=https%3A%2F%2Fblake0v2.github.io%2FTheArchAngels%2Fdashboard.html&scope=identify+guilds+applications.commands.permissions.update+connections';
+  } else {
+    // If user is authenticated, load their info
+    loadUserInfo(user);
   }
 };
+
+// Add user info after authentication (for OAuth)
+function loadUserInfo(user) {
+  document.querySelector('.message-box h1').textContent = `Welcome, ${user}`;
+}
+
+// Save user info after OAuth2 authentication
+function handleOAuth2Callback() {
+  // Check if there's an 'code' parameter in the URL (which means OAuth2 has redirected here)
+  const urlParams = new URLSearchParams(window.location.search);
+  const code = urlParams.get('code');
+  
+  if (code) {
+    // Exchange the OAuth2 code for an access token and fetch user info
+    fetch(`https://discord.com/api/v10/oauth2/token`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        client_id: '1404595445275164804',
+        client_secret: 'eWrP3MUeY5hGA7_gJR7rWUoPSv7FzZsP',  // You need to replace this with your client secret
+        code: code,
+        grant_type: 'authorization_code',
+        redirect_uri: 'https://blake0v2.github.io/TheArchAngels/dashboard.html',
+        scope: 'identify',
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Use the access token to fetch the user's Discord info
+      const accessToken = data.access_token;
+      fetch('https://discord.com/api/v10/users/@me', {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      })
+      .then(response => response.json())
+      .then(userData => {
+        // Save user info to localStorage
+        localStorage.setItem('discord_user', userData.username);
+        // Reload the page to show the authenticated user's data
+        window.location.reload();
+      });
+    });
+  }
+}
+
+// Call the function to handle OAuth2 callback if needed
+if (window.location.search.includes('code=')) {
+  handleOAuth2Callback();
+}
 
 // Navigation Functionality
 document.getElementById('dashboardBtn').addEventListener('click', function() {
@@ -34,61 +93,3 @@ function showPage(pageId) {
     document.getElementById(pageId).style.display = 'block';
   }
 }
-
-// Add user info after authentication (for OAuth)
-function loadUserInfo() {
-  const user = localStorage.getItem('discord_user');
-  if (user) {
-    document.querySelector('.message-box h1').textContent = `Welcome, ${user}`;
-  }
-}
-
-// Current Raid Status and Page Routes
-const currentRaid = {
-  "snow_island": "Not started",
-  "jungle_island": "Not started",
-  "dedu_island": "Not started"
-};
-
-const raidTimes = {
-  "dedu_island": { start: 15, end: 29 },
-  "snow_island": { start: 30, end: 44 },
-  "jungle_island": { start: 15, end: 29 },
-};
-
-function getCurrentRaid() {
-  const currentMinute = new Date().getMinutes();
-  let activeRaids = [];
-
-  for (const raid in raidTimes) {
-    const times = raidTimes[raid];
-    if (times.start <= currentMinute && currentMinute <= times.end) {
-      activeRaids.push(raid);
-    }
-  }
-
-  return activeRaids.length > 0 ? activeRaids : ['jungle_island'];
-}
-
-app.get('/current_raid', (req, res) => {
-  res.json({ current_raid: currentRaid });
-});
-
-app.get('/current_raid_page', (req, res) => {
-  const activeRaids = getCurrentRaid();
-  const raidStatus = activeRaids.length > 0 ? 'In Progress' : 'Not started';
-
-  const raidStatusDict = {
-    "dedu_island": raidStatus,
-    "snow_island": raidStatus,
-    "jungle_island": raidStatus
-  };
-
-  res.render('current_raid', {
-    currentTime: new Date().toLocaleTimeString(),
-    raidStatus: raidStatusDict
-  });
-});
-
-// Call the function to load the user info
-loadUserInfo();
