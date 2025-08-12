@@ -63,7 +63,7 @@ footer a:hover {
 }
 
 .command-description {
-    font-size: 14px;  /* Reduced font size */
+    font-size: 20px;
     color: #ffffff;
     margin-top: 5px;
 }
@@ -310,45 +310,22 @@ body {
   box-sizing: border-box; /* Ensure padding doesn't affect size */
 }
 
-/* Mobile Responsiveness */
+/* MOBILE RESPONSIVENESS */
 @media screen and (max-width: 768px) {
   .sidebar {
     width: 180px;
   }
-
-  .command-list {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
-  }
-
-  .command-item {
-    padding: 10px;
-  }
-
-  .command-btn {
-    font-size: 0.9em; /* Smaller font size on mobile */
-  }
-
-  .command-description {
-    font-size: 14px;
-  }
-
-  .content {
+  .main-content {
     margin-left: 180px;
     width: calc(100% - 180px);
   }
 
-  .command-category h3 {
-    font-size: 1.2em; /* Smaller header size on mobile */
+  .command-box {
+    width: 90%; /* Full width on smaller screens */
   }
 
-  .command-category {
-    font-size: 18px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  .command-grid {
+    flex-direction: column;
+    align-items: center;
   }
-
-  .raid-box {
-    padding: 20px;
-  }
-}
 }
