@@ -216,11 +216,6 @@ body {
   margin-bottom: 6px;
 }
 
-.command-description {
-  font-size: 20px; /* Reduce font size */
-  opacity: 0.8;
-}
-
 #raid-status {
   margin-top: 20px;
   padding: 20px;
