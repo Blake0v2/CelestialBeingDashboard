@@ -40,44 +40,146 @@
             <!-- Commands Page -->
             <div id="commands" class="page" style="display:none;">
                 <h2>Bot Commands</h2>
+                
+                <!-- Economy Commands -->
                 <div class="command-category">
                     <h3>Economy Commands</h3>
                     <div class="command-list">
-                        <button class="command-btn">/balance</button>
-                        <button class="command-btn">/daily</button>
-                        <button class="command-btn">/leaderboard</button>
-                        <button class="command-btn">/stocks</button>
-                        <button class="command-btn">/buy</button>
-                        <button class="command-btn">/sell</button>
-                        <button class="command-btn">/portfolio</button>
+                        <div class="command-item">
+                            <button class="command-btn">/balance</button>
+                            <p class="command-description">Check your account balance</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/daily</button>
+                            <p class="command-description">Claim your daily reward</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/leaderboard</button>
+                            <p class="command-description">View the top 10 users with the most money</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/stocks</button>
+                            <p class="command-description">Check current stocks</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/buy</button>
+                            <p class="command-description">Buy items from the Arch Angel market</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/sell</button>
+                            <p class="command-description">Sell your stocks for money</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/portfolio</button>
+                            <p class="command-description">View your portfolio</p>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- Gambling Commands -->
                 <div class="command-category">
                     <h3>Gambling Commands</h3>
                     <div class="command-list">
-                        <button class="command-btn">/slots</button>
-                        <button class="command-btn">/coinflip</button>
-                        <button class="command-btn">/clicker</button>
-                        <button class="command-btn">/blackjack</button>
-                        <button class="command-btn">/roll</button>
-                        <button class="command-btn">/bomb</button>
-                        <button class="command-btn">/rob</button>
+                        <div class="command-item">
+                            <button class="command-btn">/slots</button>
+                            <p class="command-description">Play slots and spin for a chance to win!</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/coinflip</button>
+                            <p class="command-description">Toss a coin and hope you win!</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/clicker</button>
+                            <p class="command-description">Click the button to earn money!</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/blackjack</button>
+                            <p class="command-description">Play blackjack to win money!</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/roll</button>
+                            <p class="command-description">Roll the dice and win!</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/duel</button>
+                            <p class="command-description">Challenge others to a duel</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/bomb</button>
+                            <p class="command-description">Defuse a bomb and win money</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/rob</button>
+                            <p class="command-description">Rob another user for their money</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/lootbox</button>
+                            <p class="command-description">Find treasure in a loot box!</p>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- Grind Commands -->
                 <div class="command-category">
                     <h3>Grind Commands</h3>
                     <div class="command-list">
-                        <button class="command-btn">!key</button>
-                        <button class="command-btn">!desert</button>
-                        <button class="command-btn">!carry</button>
-                        <button class="command-btn">!applycarry</button>
-                        <button class="command-btn">!applyneedcarry</button>
+                        <div class="command-item">
+                            <button class="command-btn">!key</button>
+                            <p class="command-description">Ping the Key Farm role to find people to grind with!</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">!desert</button>
+                            <p class="command-description">Ping the Desert role to find grinding partners</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">!needcarry</button>
+                            <p class="command-description">Ping high rank users to help you grind</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">!carry</button>
+                            <p class="command-description">Ping low rank users that you can carry</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">!apply4carry</button>
+                            <p class="command-description">Apply for the Carry Verified role</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">!apply4needcarry</button>
+                            <p class="command-description">Apply for the Need Carry role</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Staff Commands -->
+                <div class="command-category">
+                    <h3>Staff Commands</h3>
+                    <div class="command-list">
+                        <div class="command-item">
+                            <button class="command-btn">/kick</button>
+                            <p class="command-description">Kick a user from the server</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/ban</button>
+                            <p class="command-description">Ban a user from the server</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/warn</button>
+                            <p class="command-description">Warn a user for their actions</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/mute</button>
+                            <p class="command-description">Temporarily mute a user</p>
+                        </div>
+                        <div class="command-item">
+                            <button class="command-btn">/purge</button>
+                            <p class="command-description">Delete messages in bulk</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    
     <!-- Current Raid Section -->
     <div class="page-section" id="current_raid" style="display: none;">
       <h1>Current Raid Status</h1>
