@@ -9,6 +9,13 @@
     color: white;
 }
 
+#user-avatar img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
 .dashboard-box h1 {
     font-size: 2em;
 }
