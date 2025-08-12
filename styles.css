@@ -9,6 +9,13 @@
     color: white;
 }
 
+#user-avatar img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
 .dashboard-box h1 {
     font-size: 2em;
 }
@@ -96,10 +103,9 @@ body {
 
 .menu-btn {
     width: 100%;
-    padding: 30px;
+    padding: 15px;
     background: #333;
-    border: 1px solid #ffffff30;
-    border-radius: 8px;
+    border: none;
     color: white;
     font-size: 16px;
     cursor: pointer;
