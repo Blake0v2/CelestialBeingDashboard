@@ -1,102 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arch Angels Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <img src="bot-icon.png" alt="Bot Icon" class="sidebar-icon">
-      <div class="sidebar-buttons">
-        <button class="sidebar-btn" id="dashboardBtn">Dashboard</button>
-        <button class="sidebar-btn" id="commandsBtn">Commands</button>
-        <button class="sidebar-btn" id="currentRaidBtn">Current Raid</button>
-        <button class="sidebar-btn" id="leaderboardBtn">Leaderboard</button>
-        <button class="sidebar-btn" id="desertCarryBtn">Desert Carry</button>
-        <a href="https://blake0v2.github.io/testing/Log%20in.html">
-          <button class="sidebar-btn logout-btn">Log Out [->]</button>
-        </a>
-      </div>
-    </div>
-
-    <!-- Content Area -->
-    <div class="content">
-      <div id="welcomeMessage" class="message-box">
-        <h1>Welcome, User!</h1>
-        <footer>This is the Arch Angels official website, developed by @Blake0_o</footer>
-        <p>Please show your support by joining our discord, Discord.gg/TheArchAngels!</p>
-      </div>
-
-      <!-- Page Containers -->
-      <div id="commandsPage" class="page-container" style="display:none;">
-        <h1>Bot Commands</h1>
-          <h2 class="command-category">Economy Commands</h2>
-          <div class="command-grid">
-            <div class="command-box"><div class="command-title">/balance</div><div class="command-description">Check your account balance</div></div>
-            <div class="command-box"><div class="command-title">/daily</div><div class="command-description">Claim your daily reward of $100!</div></div>
-            <div class="command-box"><div class="command-title">/leaderboard</div><div class="command-description">See the top 10 users with the most money!</div></div>
-            <div class="command-box"><div class="command-title">/stocks</div><div class="command-description">Use this command to see the current stocks!</div></div>
-            <div class="command-box"><div class="command-title">/buy</div><div class="command-description">Buy stacks from the Arch Angel market!</div></div>
-            <div class="command-box"><div class="command-title">/sell</div><div class="command-description">Sell your stocks for money!</div></div>
-            <div class="command-box"><div class="command-title">/portfolio</div><div class="command-description">Look at your portfolio.</div></div>
-          </div>
-    
-          <h2 class="command-category">Gambling Commands</h2>
-          <div class="command-grid">
-            <div class="command-box"><div class="command-title">/slots</div><div class="command-description">Play slots and spin a good row!</div></div>
-            <div class="command-box"><div class="command-title">/coinflip</div><div class="command-description">Toss a coin and hope you're lucky!</div></div>
-            <div class="command-box"><div class="command-title">/clicker</div><div class="command-description">Use this to click the button and make money!</div></div>
-            <div class="command-box"><div class="command-title">/blackjack</div><div class="command-description">Play blackjack and win money.</div></div>
-            <div class="command-box"><div class="command-title">/roll</div><div class="command-description">Roll the dice and win!</div></div>
-            <div class="command-box"><div class="command-title">/duel</div><div class="command-description">Challenge your friends to a duel!</div></div>
-            <div class="command-box"><div class="command-title">/lootbox</div><div class="command-description">Find treasure in a box!</div></div>
-            <div class="command-box"><div class="command-title">/bomb</div><div class="command-description">Defuse a bomb for money!</div></div>
-            <div class="command-box"><div class="command-title">/rob</div><div class="command-description">Rob another user for their money!</div></div>
-          </div>
-          
-          <h2 class="command-category">Grind Commands</h2>
-          <div class="command-grid">
-            <div class="command-box"><div class="command-title">!key</div><div class="command-description">Ping the Key Farm role and find people to grind with!</div></div>
-            <div class="command-box"><div class="command-title">!desert</div><div class="command-description">Ping the Desert role and find people to grind with!</div></div>
-            <div class="command-box"><div class="command-title">!needcarry</div><div class="command-description">Ping high rank users that you need a carry!</div></div>
-            <div class="command-box"><div class="command-title">!carry</div><div class="command-description">Ping low rank users that you can carry them!</div></div>
-            <div class="command-box"><div class="command-title">!apply4carry</div><div class="command-description">Apply for the 'Carry Verified' role.</div></div>
-            <div class="command-box"><div class="command-title">!apply4needcarry</div><div class="command-description">Apply for the 'Need Carry' role.</div></div>
-          </div>
+    <div class="container">
+        <div class="sidebar">
+            <div class="bot-icon">
+                <img src="https://i.postimg.cc/Pr31Rx40/Here-is-a-non-realistic-profile-picture-in-a-gold-white-and-blue-theme-inspired-by-an-Archangel.png" alt="Bot Icon">
+            </div>
+            <ul class="menu">
+                <li><button class="menu-btn" onclick="showPage('dashboard')">Dashboard</button></li>
+                <li><button class="menu-btn" onclick="showPage('commands')">Commands</button></li>
+                <li><button class="menu-btn" onclick="showPage('current-raid')">Current Raid</button></li>
+                <li><button class="menu-btn" onclick="showPage('leaderboard')">Leaderboard</button></li>
+                <li><button class="menu-btn" onclick="showPage('desert-carry')">Desert Carry</button></li>
+            </ul>
         </div>
-          </div>
+        <div class="content">
+            <!-- Dashboard Page -->
+            <div id="dashboard" class="page">
+                <div class="dashboard-box">
+                    <h1>Welcome, <span id="username">User</span>!</h1>
+                </div>
+                <footer>
+                    <p>This is the Arch Angels official website, developed by @Blake0_o</p>
+                    <p>Please show your support by joining our Discord: <a href="https://discord.gg/TheArchAngels" target="_blank">Discord.gg/TheArchAngels</a></p>
+                </footer>
+            </div>
 
-      <div id="currentRaidPage" class="page-container" style="display:none;">
-        <h1>Current Raid Status</h1>
-        <div class="raid-box" id="dedu-island">
-        <div class="raid-title">Dedu Island Raid Has Spawned!</div>
-        <div class="raid-description">Will you reach the "King"?</div>
-        <img src="https://i.postimg.cc/rwSNPy5m/Untitled-design-36.png" alt="Dedu Island" class="raid-image" />
-        <div class="raid-footer">Discord.gg/A6xhTeGKJg</div>
-      </div>
+            <!-- Commands Page -->
+            <div id="commands" class="page" style="display:none;">
+                <h2>Bot Commands</h2>
+                <div class="command-category">
+                    <h3>Economy Commands</h3>
+                    <div class="command-list">
+                        <button class="command-btn">/balance</button>
+                        <button class="command-btn">/daily</button>
+                        <button class="command-btn">/leaderboard</button>
+                        <button class="command-btn">/stocks</button>
+                        <button class="command-btn">/buy</button>
+                        <button class="command-btn">/sell</button>
+                        <button class="command-btn">/portfolio</button>
+                    </div>
+                </div>
+                <div class="command-category">
+                    <h3>Gambling Commands</h3>
+                    <div class="command-list">
+                        <button class="command-btn">/slots</button>
+                        <button class="command-btn">/coinflip</button>
+                        <button class="command-btn">/clicker</button>
+                        <button class="command-btn">/blackjack</button>
+                        <button class="command-btn">/roll</button>
+                        <button class="command-btn">/bomb</button>
+                        <button class="command-btn">/rob</button>
+                    </div>
+                </div>
+                <div class="command-category">
+                    <h3>Grind Commands</h3>
+                    <div class="command-list">
+                        <button class="command-btn">/key</button>
+                        <button class="command-btn">/desert</button>
+                        <button class="command-btn">/carry</button>
+                        <button class="command-btn">/applycarry</button>
+                        <button class="command-btn">/applyneedcarry</button>
+                    </div>
+                </div>
+            </div>
 
-      <div class="raid-box" id="snow-island">
-        <div class="raid-title">Snow Island Raid Has Spawned!</div>
-        <div class="raid-description">The air turns to frost!</div>
-        <img src="https://i.postimg.cc/BZcxGZ6P/Untitled-design-37.png" alt="Snow Island" class="raid-image" />
-        <div class="raid-footer">Discord.gg/A6xhTeGKJg</div>
-      </div>
-
-      <div class="raid-box" id="jungle-island">
-        <div class="raid-title">Jungle Island Raid Has Spawned!</div>
-        <div class="raid-description">The beast monarch has started his attack!</div>
-        <img src="https://i.postimg.cc/d0y4vmMq/Untitled-design-35.png" alt="Jungle Island" class="raid-image" />
-        <div class="raid-footer">Discord.gg/A6xhTeGKJg</div>
-      </div>
+            <!-- Other pages... -->
+        </div>
     </div>
-      </div>
-    </div>
-  </div>
 
-  <script src="index.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
