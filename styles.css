@@ -1,160 +1,311 @@
-/* Sidebar */
+body {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(145deg, #293b75, #ffffff); /* Unified gradient background */
+  font-family: 'Segoe UI', sans-serif;
+  color: #ffffff;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
 .sidebar {
-    width: 250px;
-    background-color: #242322;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    position: fixed;
-    height: 100%;
-    top: 0;
+  width: 220px;
+  height: 100vh;
+  background: linear-gradient(145deg, #FFB300, #FF6A00); /* Yellow/Orange gradient */
+  border: 1px solid #ffffff;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  overflow-y: auto;
 }
 
-.sidebar .bot-icon img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 30px;
+.sidebar h2 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 18px;
 }
 
-.menu {
-    list-style: none;
-    padding: 0;
+.sidebar button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px 16px;
+  background-color: #ffffff10;
+  color: #ffffff;
+  border: 1px solid #ffffff30;
+  border-radius: 8px;
+  width: 90%;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-.menu-btn, .logout-btn {
-    width: 100%;
-    padding: 15px;
-    background: #333;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 10px 0;
-    border-radius: 5px;
+.sidebar button:hover {
+  background-color: #3a4e8d;
 }
 
-.menu-btn:hover, .logout-btn:hover {
-    background: #e4bf67;
+.sidebar #bot-name {
+  font-size: 25px;
+  color: #fff;
+  margin-top: 20px;
+  text-align: center;
 }
 
-/* Content */
-.content {
-    margin-left: 260px;
-    padding: 20px;
-    color: white;
+.sidebar #bot-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Dashboard Box */
-.dashboard-box {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    margin: 50px auto;
-    width: 70%;
-    color: white;
+#log-out-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-#user-avatar img {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    margin-bottom: 20px;
+#log-out-btn:hover {
+  background-color: #FFB300;
 }
 
-.dashboard-box h1 {
-    font-size: 2em;
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  width: calc(100% - 250px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-footer {
-    text-align: center;
-    margin-top: 20px;
-    color: white;
+.page-section {
+  display: none;
+  padding: 20px;
 }
 
-footer a {
-    color: #e4bf67;
-    text-decoration: none;
+.page-section.active {
+  display: block;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-footer a:hover {
-    text-decoration: underline;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Command Boxes */
+#welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  margin-top: 80px;
+  width: 100%;
+  max-width: 605px;
+}
+
+#welcome img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+#welcome h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+#welcome p {
+  font-size: 18px;
+}
+
+#current_raid,
+#commands,
+#leaderboard {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  width: 100%;
+  max-width: 800px;
+  margin-top: 40px;
+}
+
 .command-category {
-    margin-top: 30px;
-    font-size: 1.5em;
+  font-size: 22px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 5px;
+  text-align: center;
 }
 
 .command-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* Reduce gap between boxes */
+  justify-content: center;
 }
 
 .command-box {
-    background-color: #333;
-    border-radius: 10px;
-    padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 12px; /* Reduce padding inside each box */
+  width: 200px; /* Reduce the width to make it smaller */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  transition: transform 0.2s ease-in-out;
+  text-align: center;
+}
+
+.command-box:hover {
+  transform: scale(1.02);
 }
 
 .command-title {
-    font-weight: bold;
-    font-size: 1.1em;
+  font-weight: bold;
+  font-size: 16px; /* Reduce font size */
+  margin-bottom: 6px;
 }
 
 .command-description {
-    font-size: 0.9em;
-    margin-top: 5px;
+  font-size: 12px; /* Reduce font size */
+  opacity: 0.8;
 }
 
-/* Raid Boxes */
+#raid-status {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  font-size: 16px;
+}
+
 .raid-box {
-    background-color: #333;
-    padding: 20px;
-    margin: 10px 0;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.raid-title {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #e4bf67;
+  display: none; /* Ensuring only one box is shown */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  margin-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;  /* Limit the width of the boxes to prevent them from stretching */
+  margin: 10px auto;  /* Center the boxes */
+  box-sizing: border-box; /* Ensure padding doesn't affect size */
 }
 
 .raid-image {
-    width: 100%;
-    border-radius: 10px;
-    margin-top: 15px;
+  width: 100%;  /* Ensure image fits the width */
+  max-height: 300px;  /* Max height for uniformity */
+  object-fit: cover;  /* Ensure image is cropped to fit the box */
+  border-radius: 10px; /* Optional, for rounded corners */
+}
+
+#current_raid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+#jungle-island {
+  background: #38a351;  /* Jungle raid color */
+  border: 2px solid #6b7e6b8c;  
+}
+
+#snow-island {
+  background: #96d3f7;  /* Snow raid color */
+  border: 2px solid #467296a1;  
+}
+
+#dedu-island {
+  background: #701313;  /* Dedu raid color */
+  border: 2px solid #f7000077;  
+}
+
+.raid-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.raid-description {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .raid-footer {
-    margin-top: 10px;
-    color: #e4bf67;
+  font-size: 16px;
+  font-weight: bold;
+  color: #b0b0b0;
 }
 
-/* Other styles */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #e4bf67, #10233e);
-    display: flex;
-    height: 100vh;
+#leaderboard-status {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  font-size: 16px;
 }
 
-.container {
-    display: flex;
-    width: 100%;
+.leaderboard-box {
+  display: none; /* Ensuring only one box is shown */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  margin-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;  /* Limit the width of the boxes to prevent them from stretching */
+  margin: 10px auto;  /* Center the boxes */
+  box-sizing: border-box; /* Ensure padding doesn't affect size */
 }
 
-.page {
-    display: none;
+/* MOBILE RESPONSIVENESS */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 180px;
+  }
+  .main-content {
+    margin-left: 180px;
+    width: calc(100% - 180px);
+  }
+
+  .command-box {
+    width: 90%; /* Full width on smaller screens */
+  }
+
+  .command-grid {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
-.page:first-child {
-    display: block;
-}
