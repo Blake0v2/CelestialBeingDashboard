@@ -1,4 +1,51 @@
-/* Dashboard Page */
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #242322;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    height: 100%;
+    top: 0;
+}
+
+.sidebar .bot-icon img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 30px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-btn, .logout-btn {
+    width: 100%;
+    padding: 15px;
+    background: #333;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.menu-btn:hover, .logout-btn:hover {
+    background: #e4bf67;
+}
+
+/* Content */
+.content {
+    margin-left: 260px;
+    padding: 20px;
+    color: white;
+}
+
+/* Dashboard Box */
 .dashboard-box {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 30px;
@@ -35,38 +82,61 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Command Buttons and Layout */
+/* Command Boxes */
 .command-category {
-    margin-bottom: 20px;
-}
-
-.command-category h3 {
-    color: #e4bf67;
+    margin-top: 30px;
     font-size: 1.5em;
-    margin-bottom: 10px;
 }
 
-.command-list {
+.command-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 15px;
 }
 
-.command-btn {
+.command-box {
     background-color: #333;
-    color: white;
-    padding: 10px;
-    border: none;
-    font-size: 1em;
     border-radius: 10px;
-    cursor: pointer;
+    padding: 10px;
 }
 
-.command-btn:hover {
-    background-color: #e4bf67;
+.command-title {
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
-/* Rest of styles */
+.command-description {
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* Raid Boxes */
+.raid-box {
+    background-color: #333;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.raid-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #e4bf67;
+}
+
+.raid-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.raid-footer {
+    margin-top: 10px;
+    color: #e4bf67;
+}
+
+/* Other styles */
 body {
     margin: 0;
     padding: 0;
@@ -79,50 +149,6 @@ body {
 .container {
     display: flex;
     width: 100%;
-}
-
-.sidebar {
-    width: 250px;
-    background-color: #242322;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.sidebar .bot-icon img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 30px;
-}
-
-.menu {
-    list-style: none;
-    padding: 0;
-}
-
-.menu-btn {
-    width: 100%;
-    padding: 15px;
-    background: #333;
-    border: 1px solid #ffffff30;
-    border-radius: 8px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 10px 0;
-    padding: 10px 16px;
-}
-
-.menu-btn:hover {
-    background: #e4bf67;
-}
-
-.content {
-    flex: 1;
-    padding: 20px;
-    color: white;
-    overflow-y: auto;
 }
 
 .page {
