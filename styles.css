@@ -132,7 +132,7 @@ body {
     display: block;
 }
 
-#log-out-btn {
+#logout-btn {
   position: absolute;
   bottom: 15px;
   left: 15px;
@@ -144,6 +144,6 @@ body {
   cursor: pointer;
 }
 
-#log-out-btn:hover {
+#logout-btn:hover {
   background-color: #FFB300;
 }
