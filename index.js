@@ -7,9 +7,11 @@ function showPage(pageId) {
     const selectedPage = document.getElementById(pageId);
     selectedPage.style.display = 'block';
 
-    // Update Dashboard username dynamically (example)
+    // Update Dashboard username and avatar dynamically
     if (pageId === 'dashboard') {
-        const username = "User"; // This should come from the Discord OAuth data
+        const username = "User"; // Replace with actual username from Discord OAuth
+        const avatarURL = "https://i.postimg.cc/Pr31Rx40/Here-is-a-non-realistic-profile-picture-in-a-gold-white-and-blue-theme-inspired-by-an-Archangel.png"; // Replace with the actual avatar URL from Discord OAuth
         document.getElementById('username').textContent = username;
+        document.getElementById('user-avatar').innerHTML = `<img src="${avatarURL}" alt="User Avatar">`;
     }
 }
