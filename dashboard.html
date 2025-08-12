@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discord Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -21,14 +21,60 @@
             </ul>
         </div>
         <div class="content">
-            <div id="dashboard" class="page">Welcome to the Dashboard!</div>
-            <div id="commands" class="page" style="display:none;">Here are your commands.</div>
-            <div id="current-raid" class="page" style="display:none;">Details about the current raid.</div>
-            <div id="leaderboard" class="page" style="display:none;">Leaderboard here.</div>
-            <div id="desert-carry" class="page" style="display:none;">Desert Carry details here.</div>
+            <!-- Dashboard Page -->
+            <div id="dashboard" class="page">
+                <div class="dashboard-box">
+                    <h1>Welcome, <span id="username">User</span>!</h1>
+                </div>
+                <footer>
+                    <p>This is the Arch Angels official website, developed by @Blake0_o</p>
+                    <p>Please show your support by joining our Discord: <a href="https://discord.gg/TheArchAngels" target="_blank">Discord.gg/TheArchAngels</a></p>
+                </footer>
+            </div>
+
+            <!-- Commands Page -->
+            <div id="commands" class="page" style="display:none;">
+                <h2>Bot Commands</h2>
+                <div class="command-category">
+                    <h3>Economy Commands</h3>
+                    <div class="command-list">
+                        <button class="command-btn">/balance</button>
+                        <button class="command-btn">/daily</button>
+                        <button class="command-btn">/leaderboard</button>
+                        <button class="command-btn">/stocks</button>
+                        <button class="command-btn">/buy</button>
+                        <button class="command-btn">/sell</button>
+                        <button class="command-btn">/portfolio</button>
+                    </div>
+                </div>
+                <div class="command-category">
+                    <h3>Gambling Commands</h3>
+                    <div class="command-list">
+                        <button class="command-btn">/slots</button>
+                        <button class="command-btn">/coinflip</button>
+                        <button class="command-btn">/clicker</button>
+                        <button class="command-btn">/blackjack</button>
+                        <button class="command-btn">/roll</button>
+                        <button class="command-btn">/bomb</button>
+                        <button class="command-btn">/rob</button>
+                    </div>
+                </div>
+                <div class="command-category">
+                    <h3>Grind Commands</h3>
+                    <div class="command-list">
+                        <button class="command-btn">/key</button>
+                        <button class="command-btn">/desert</button>
+                        <button class="command-btn">/carry</button>
+                        <button class="command-btn">/applycarry</button>
+                        <button class="command-btn">/applyneedcarry</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+
