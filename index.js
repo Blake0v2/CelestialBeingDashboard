@@ -15,7 +15,3 @@ function showPage(pageId) {
     }
 }
 
-// Optional: If you want the "Commands" page to be displayed by default when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    showPage('dashboard'); // Change to 'commands' if you want the Commands page to open by default
-});
