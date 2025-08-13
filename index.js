@@ -8,7 +8,7 @@ user_data = {
     "123456789": {"balance": 1000},
     "987654321": {"balance": 2000},
     "112233445": {"balance": 1500},
-    # Add more users as needed
+    # Add more users as needed 
 }
 
 @app.route("/api/leaderboard")
