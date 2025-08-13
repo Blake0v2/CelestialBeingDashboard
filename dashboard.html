@@ -28,8 +28,10 @@
                 <div class="dashboard-box">
                     <div id="user-avatar">
                         <img src="https://i.postimg.cc/X75LyHz1/Untitled-design-48.png" alt="User Avatar"> <!-- Placeholder, replace with actual avatar -->
+                        <img src="" alt="User Avatar" id="avatar"> <!-- The user's actual avatar will be dynamically set here -->
                     </div>
                     <h1>Welcome, <span id="username">Blake0_o</span>!</h1>
+                    <h1>Welcome, <span id="username">Loading...</span>!</h1> <!-- The user's actual username will be dynamically set here -->
                     <footer>
                         <p>This is the Arch Angels official website, developed by @Blake0_o</p>
                         <p>Please show your support by joining our Discord: <a href="https://discord.gg/TheArchAngels" target="_blank">Discord.gg/TheArchAngels</a></p>
@@ -75,7 +77,10 @@
                     </div>
                 </div>
             </div>
-                
+
+            <!-- Gambling Commands -->
+            <div class="command-category">
+                <h3>Gambling Commands</h3>
                 <div class="command-list">
                     <div class="command-item">
                         <button class="command-btn" title="Play slots and spin for a chance to win!">/slots</button>
@@ -115,7 +120,10 @@
                     </div>
                 </div>
             </div>
-            
+
+            <!-- Grind Commands -->
+            <div class="command-category">
+                <h3>Grind Commands</h3>
                 <div class="command-list">
                     <div class="command-item">
                         <button class="command-btn" title="Ping the Key Farm role to find people to grind with!">!key</button>
@@ -143,19 +151,22 @@
                     </div>
                 </div>
             </div>
-        
+
+            <!-- Staff Commands -->
+            <div class="command-category">
+                <h3>Staff Commands</h3>
                 <div class="command-list">
                     <div class="command-item">
-                        <button class="command-btn" title="Kick a user from the server">/kick</button>
-                        <div class="command-description">Kick a user from the server.</div>
+                        <button class="command-btn" title="Give a user currency">/give</button>
+                        <div class="command-description">Give a user currency.</div>
                     </div>
                     <div class="command-item">
-                        <button class="command-btn" title="Ban a user from the server">/ban</button>
-                        <div class="command-description">Ban a user from the server.</div>
+                        <button class="command-btn" title="Take currency from a user">/take</button>
+                        <div class="command-description">Take currency from a user.</div>
                     </div>
                     <div class="command-item">
-                        <button class="command-btn" title="Warn a user for their actions">/warn</button>
-                        <div class="command-description">Warn a user for their actions.</div>
+                        <button class="command-btn" title="Warn a user">/warn</button>
+                        <div class="command-description">Warn a user.</div>
                     </div>
                     <div class="command-item">
                         <button class="command-btn" title="Temporarily mute a user">/mute</button>
@@ -193,7 +204,5 @@
         <div class="raid-footer">Discord.gg/TheArchAngels</div>
       </div>
     </div>
-
-    <script src="index.js"></script>
 </body>
 </html>
