@@ -204,30 +204,5 @@
         <div class="raid-footer">Discord.gg/TheArchAngels</div>
       </div>
     </div>
-
-    <script>
-        // Function to parse URL query parameters
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                username: params.get('username'),
-                avatar: params.get('avatar'),
-                userId: params.get('userId')
-            };
-        }
-
-        // Get user data from query parameters
-        const userData = getQueryParams();
-
-        // If the data is available, update the page content
-        if (userData.username && userData.avatar && userData.userId) {
-            document.getElementById('username').textContent = userData.username;
-            document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${userData.userId}/${userData.avatar}.png`;  // Construct avatar URL
-        } else {
-            // Handle error: if data is not found, display a default state
-            document.getElementById('username').textContent = 'Guest';
-            document.getElementById('avatar').src = 'https://cdn.discordapp.com/embed/avatars/0.png';  // Default avatar
-        }
-    </script>
 </body>
 </html>
