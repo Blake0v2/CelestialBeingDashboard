@@ -23,21 +23,17 @@
             <a href="https://blake0v2.github.io/testing/Log%20in.html" class="logout-btn">Log Out [➔</a>
         </div>
         <div class="content">
-            <!-- Dashboard Page -->
-            <div id="dashboard" class="page">
-                <div class="dashboard-box">
-                    <div id="user-avatar">
-                        <img src="" alt="User Avatar" id="avatar"> <!-- Avatar will be dynamically set -->
-                    </div>
-                    <h1>Welcome, <span id="username">Loading...</span>!</h1> <!-- Username will be dynamically set -->
-                    <footer>
-                        <p>This is the Arch Angels official website, developed by @Blake0_o</p>
-                        <p>Please show your support by joining our Discord: <a href="https://discord.gg/TheArchAngels" target="_blank">Discord.gg/TheArchAngels</a></p>
-                    </footer>
-                </div>
+            <!-- Dash Board -->
+          <div class="dashboard-container">
+            <h1>Welcome, <span id="username">Loading...</span></h1>
+            <div id="user-avatar">
+              <img src="" alt="User Avatar" id="avatar"> <!-- Avatar will be dynamically set -->
             </div>
-        </div>
-    </div>
+            <footer>
+              <p>This is the Arch Angels official website, developed by @Blake0_o</p>
+              <p>Please show your support by joining our Discord: <a href="https://discord.gg/TheArchAngels" target="_blank">Discord.gg/TheArchAngels</a></p>
+            </footer>
+          </div>
 
             <!-- Commands Page -->
             <div id="commands" class="page" style="display:none;">
@@ -204,5 +200,30 @@
         <div class="raid-footer">Discord.gg/TheArchAngels</div>
       </div>
     </div>
+                
+  <script>
+    // Function to parse URL query parameters
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        username: params.get('username'),
+        avatar: params.get('avatar'),
+        userId: params.get('userId')
+      };
+    }
+
+    // Get user data from query parameters
+    const userData = getQueryParams();
+
+    // If the data is available, update the page content
+    if (userData.username && userData.avatar && userData.userId) {
+      document.getElementById('username').textContent = userData.username;
+      document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${userData.userId}/${userData.avatar}.png`;  // Construct avatar URL
+    } else {
+      // Handle error: if data is not found, display a default state
+      document.getElementById('username').textContent = 'Guest';
+      document.getElementById('avatar').src = 'https://cdn.discordapp.com/embed/avatars/0.png';  // Default avatar
+    }
+  </script>
 </body>
 </html>
