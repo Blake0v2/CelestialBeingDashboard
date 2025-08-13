@@ -203,6 +203,16 @@
       </div>
     </div>
 
+    <!-- Add this Login Button to your dashboard.html -->
+    <button id="loginButton">Log in with Discord</button>
+    
+    <script>
+      // Trigger OAuth2 authentication
+      document.getElementById('loginButton').addEventListener('click', function() {
+        window.location.href = 'https://discord.com/oauth2/authorize?client_id=1404595445275164804&response_type=code&redirect_uri=https%3A%2F%2Fblake0v2.github.io%2FTheArchAngels%2Fdashboard.html&scope=identify+guilds+applications.commands.permissions.update+guilds.join+connections';  // Redirect to your backend OAuth2 login endpoint
+      });
+    </script>
+
     <script src="index.js"></script>
     <script>
         // Check if URL contains username and avatar query parameters
