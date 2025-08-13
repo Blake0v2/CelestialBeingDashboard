@@ -27,15 +27,17 @@
             <div id="dashboard" class="page">
                 <div class="dashboard-box">
                     <div id="user-avatar">
-                        <img src="" alt="User Avatar" id="avatar"> <!-- The user's actual avatar will be dynamically set here -->
+                        <img src="" alt="User Avatar" id="avatar"> <!-- Avatar will be dynamically set -->
                     </div>
-                    <h1>Welcome, <span id="username">Loading...</span>!</h1> <!-- The user's actual username will be dynamically set here -->
+                    <h1>Welcome, <span id="username">Loading...</span>!</h1> <!-- Username will be dynamically set -->
                     <footer>
                         <p>This is the Arch Angels official website, developed by @Blake0_o</p>
                         <p>Please show your support by joining our Discord: <a href="https://discord.gg/TheArchAngels" target="_blank">Discord.gg/TheArchAngels</a></p>
                     </footer>
                 </div>
             </div>
+        </div>
+    </div>
 
             <!-- Commands Page -->
             <div id="commands" class="page" style="display:none;">
@@ -203,28 +205,28 @@
       </div>
     </div>
 
-    <!-- Add this Login Button to your dashboard.html -->
-    <button id="loginButton">Log in with Discord</button>
-    
     <script>
-      // Trigger OAuth2 authentication
-      document.getElementById('loginButton').addEventListener('click', function() {
-        window.location.href = 'https://discord.com/oauth2/authorize?client_id=1404595445275164804&response_type=code&redirect_uri=https%3A%2F%2Fblake0v2.github.io%2FTheArchAngels%2Fdashboard.html&scope=identify+guilds+applications.commands.permissions.update+guilds.join+connections';  // Redirect to your backend OAuth2 login endpoint
-      });
-    </script>
+        // Function to parse URL query parameters
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                username: params.get('username'),
+                avatar: params.get('avatar'),
+                userId: params.get('userId')
+            };
+        }
 
-    <script src="index.js"></script>
-    <script>
-        // Check if URL contains username and avatar query parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const username = urlParams.get('username');
-        const avatar = urlParams.get('avatar');
-        const userId = urlParams.get('userId');
+        // Get user data from query parameters
+        const userData = getQueryParams();
 
-        // Update the dashboard with the user's details
-        if (username && avatar && userId) {
-            document.getElementById('username').textContent = username;
-            document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${userId}/${avatar}.png`;
+        // If the data is available, update the page content
+        if (userData.username && userData.avatar && userData.userId) {
+            document.getElementById('username').textContent = userData.username;
+            document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${userData.userId}/${userData.avatar}.png`;  // Construct avatar URL
+        } else {
+            // Handle error: if data is not found, display a default state
+            document.getElementById('username').textContent = 'Guest';
+            document.getElementById('avatar').src = 'https://cdn.discordapp.com/embed/avatars/0.png';  // Default avatar
         }
     </script>
 </body>
