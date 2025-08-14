@@ -224,14 +224,38 @@
     </div>
     <script>
         window.onload = function() {
-            // Check if the user is authenticated
+            // Check if the user has the access token in localStorage
             if (!localStorage.getItem('access_token')) {
                 // If not authenticated, redirect to OAuth2 login
-                window.location.href = "https://discord.com/oauth2/authorize?client_id=1404595445275164804&response_type=code&redirect_uri=https%3A%2F%2Fblake0v2.github.io%2FCelestialBeingDashboard%2Fdashboard.html&scope=identify+guilds+applications.commands.permissions.update+guilds.join+connections";
+                const oauth2Url = "https://discord.com/oauth2/authorize?client_id=1404595445275164804&response_type=code&redirect_uri=https%3A%2F%2Fblake0v2.github.io%2FCelestialBeingDashboard%2Fdashboard.html&scope=identify+guilds+applications.commands.permissions.update+guilds.join+connections";
+                window.location.href = oauth2Url;  // Redirect to Discord OAuth2
             } else {
-                // User is authenticated, proceed with loading dashboard
-                // Optionally, fetch user data and display the dashboard
+                // User is authenticated, fetch the user info (use access_token from localStorage)
+                const accessToken = localStorage.getItem('access_token');
+                fetchUserInfo(accessToken);
             }
+        }
+
+        // Function to fetch user information from backend and display the dashboard
+        function fetchUserInfo(accessToken) {
+            // Fetch the user info (you could call your FastAPI backend here if necessary)
+            fetch(`https://your-backend-url.com/user_info?access_token=${accessToken}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('username').textContent = data.username;
+                    document.getElementById('user-avatar-img').src = data.avatar_url;
+                    document.getElementById('dashboard').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error fetching user info:', error);
+                });
+        }
+
+        // Function to show a specific page and hide others
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.style.display = 'none');
+            document.getElementById(pageId).style.display = 'block';
         }
     </script>
 
