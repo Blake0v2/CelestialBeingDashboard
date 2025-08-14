@@ -227,7 +227,7 @@
             // Check if the user is authenticated
             if (!localStorage.getItem('access_token')) {
                 // If not authenticated, redirect to OAuth2 login
-                window.location.href = "https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=identify";
+                window.location.href = "https://discord.com/oauth2/authorize?client_id=1404595445275164804&response_type=code&redirect_uri=https%3A%2F%2Fblake0v2.github.io%2FCelestialBeingDashboard%2Fdashboard.html&scope=identify+guilds+applications.commands.permissions.update+guilds.join+connections";
             } else {
                 // User is authenticated, proceed with loading dashboard
                 // Optionally, fetch user data and display the dashboard
