@@ -1,5 +1,4 @@
 from flask import Flask, jsonify
-import discord
 
 app = Flask(__name__)
 
@@ -8,7 +7,7 @@ user_data = {
     "123456789": {"balance": 1000},
     "987654321": {"balance": 2000},
     "112233445": {"balance": 1500},
-    # Add more users as needed 
+    # Add more users as needed
 }
 
 @app.route("/api/leaderboard")
@@ -36,15 +35,43 @@ function showPage(pageId) {
     // Hide all pages
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => page.style.display = 'none');
-    pages.forEach(page => {
-        page.style.display = 'none';
-    });
 
     // Show the selected page
     const selectedPage = document.getElementById(pageId);
     selectedPage.style.display = 'block';
-    if (selectedPage) {
-        selectedPage.style.display = 'block';
+
+    // If the selected page is 'leaderboard', fetch and display leaderboard data
+    if (pageId === 'leaderboard') {
+        fetchLeaderboard();
     }
 }
 
+// Function to fetch and display the leaderboard
+function fetchLeaderboard() {
+    fetch('/api/leaderboard')
+        .then(response => response.json())
+        .then(data => {
+            const leaderboardContainer = document.getElementById('leaderboard-container');
+            leaderboardContainer.innerHTML = ''; // Clear previous content
+
+            if (data.length === 0) {
+                leaderboardContainer.innerHTML = '<p>No leaderboard data available.</p>';
+                return;
+            }
+
+            data.forEach(user => {
+                const userElement = document.createElement('div');
+                userElement.classList.add('leaderboard-item');
+                userElement.innerHTML = `
+                    <p><strong>Rank ${user.rank}:</strong> ${user.name} - <strong>${user.balance}</strong> Celestials</p>
+                `;
+                leaderboardContainer.appendChild(userElement);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching leaderboard:', error);
+        });
+}
+
+// Example of page switching logic
+document.getElementById('leaderboard').addEventListener('show', fetchLeaderboard);
