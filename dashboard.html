@@ -224,9 +224,17 @@
     </div>
     <script>
         window.onload = function() {
-            window.location.href = "https://discord.com/api/oauth2/authorize?client_id=1404595445275164804&redirect_uri=https://blake0v2.github.io/CelestialBeingDashboard/dashboard.html&response_type=code&scope=identify";
+            // Check if the user is authenticated
+            if (!localStorage.getItem('access_token')) {
+                // If not authenticated, redirect to OAuth2 login
+                window.location.href = "https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=identify";
+            } else {
+                // User is authenticated, proceed with loading dashboard
+                // Optionally, fetch user data and display the dashboard
+            }
         }
     </script>
+
     <script src="index.js"></script>
 </body>
 </html>
