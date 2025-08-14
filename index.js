@@ -21,7 +21,7 @@ app = FastAPI()
 @app.get("/login")
 async def login():
     # Redirect user to Discord login page
-    redirect_uri = f"{OAUTH2_URL}?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&response_type=code&scope=identify"
+    redirect_uri = f"https://discord.com/oauth2/authorize?client_id=1404595445275164804&response_type=code&redirect_uri=https%3A%2F%2Fblake0v2.github.io%2FCelestialBeingDashboard%2Fdashboard.html&scope=identify+guilds+applications.commands.permissions.update+guilds.join+connections"
     return RedirectResponse(redirect_uri)
 
 @app.get("/callback")
