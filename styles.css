@@ -310,26 +310,6 @@ body {
   box-sizing: border-box; /* Ensure padding doesn't affect size */
 }
 
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Body and Background */
-body {
-  background: linear-gradient(45deg, #10233e, #000000, #e4bf67);
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-size: cover;
-}
-
 /* Login Container */
 .login-container {
   background: #0f142b; 
