@@ -38,37 +38,52 @@
             </div>
         </div>
 
-            <div id="leaderboard" class="page" style="display:none;">
-                <h2>🏆Leaderboard</h2>
-                <div class="leaderboard-category">
-                    <h3>Economy Commands</h3>
-                    <div class="command-list">
-                        <div class="command-item">
-                            <button class="command-btn" title="Check your account balance">/balance</button>
-                            <div class="command-description">Check your account balance in the economy system.</div>
-                        </div>
+        <div id="leaderboard" class="page" style="display:none;">
+            <h2>🏆Leaderboard</h2>
+            <div class="leaderboard-category">
+                <h3>Economy Commands</h3>
+                <div class="command-list">
+                    <div class="command-item">
+                        <button class="command-btn" title="Check your account balance">/balance</button>
+                        <div class="command-description">Check your account balance in the economy system.</div>
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
+    </div>
 
-        <script>
-            // Check if the user is authenticated
-            window.onload = function() {
-                // Retrieve the user data from localStorage (set during OAuth2 login)
-                const user = JSON.parse(localStorage.getItem('discordUser'));
-        
-                if (user) {
-                    // Dynamically set the username and avatar based on the authenticated user's data
-                    document.getElementById('username').innerText = user.username;
-                    document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
-                } else {
-                    // If no user is found in localStorage, redirect to the login page
-                    window.location.href = "https://blake0v2.github.io/CelestialBeingLogin/Log%20in.html";
-                }
+    <script>
+        // Check if the user is authenticated
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userData = urlParams.get('userData');
+
+            if (userData) {
+                const user = JSON.parse(decodeURIComponent(userData));
+
+                // Dynamically set the username and avatar based on the authenticated user's data
+                document.getElementById('username').innerText = user.username;
+                document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+            } else {
+                // If no user is found in URL params, redirect to the login page
+                window.location.href = "https://blake0v2.github.io/CelestialBeingLogin/Log%20in.html";
             }
-        </script>
+        }
 
-        <script src="index.js"></script>
-    </body>
+        // Function to show a specific page and hide others
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.style.display = 'none');
+
+            const selectedPage = document.getElementById(pageId);
+            selectedPage.style.display = 'block';
+        }
+
+        // Log out function (this will just clear the localStorage and redirect to the login page)
+        function logout() {
+            localStorage.removeItem('discordUser');
+            window.location.href = "https://blake0v2.github.io/CelestialBeingLogin/Log%20in.html";
+        }
+    </script>
+</body>
 </html>
