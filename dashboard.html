@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar -->
         <div class="sidebar">
             <div class="bot-icon">
                 <img src="https://i.postimg.cc/Pr31Rx40/Here-is-a-non-realistic-profile-picture-in-a-gold-white-and-blue-theme-inspired-by-an-Archangel.png" alt="Bot Icon">
@@ -21,91 +20,91 @@
                 <li><button class="menu-btn" onclick="showPage('desert-carry')">Desert Carry</button></li>
             </ul>
             <!-- Log Out Button -->
-            <a href="https://blake0v2.github.io/CelestialBeingLogin/Log%20in.html" onclick="logout()" class="logout-btn">Log Out [➔</a>
+            <a href="#" onclick="logout()" class="logout-btn">Log Out [➔</a>
         </div>
-            <a href="https://blake0v2.github.io/CelestialBeingLogin/Log%20in.html" onclick="Login()" class="login-btn">Log In With Discord</a>
+        <div class="content">
+        <!-- Dashboard Page -->
+        <div id="dashboard" class="page">
+            <div class="dashboard-box">
+                <div id="user-avatar">
+                    <!-- This will dynamically set the avatar image based on the authenticated user -->
+                    <img id="avatar" src="" alt="User Avatar">
+                </div>
+                <h1>Welcome, <span id="username">{{ username }}</span>!</h1> <!-- The user's actual username will be dynamically set here -->
+                <footer>
+                    <p>This is the Arch Angels official website, developed by @Blake0_o</p>
+                    <p>Please show your support by joining our Discord: <a href="https://discord.gg/TheArchAngels" target="_blank">Discord.gg/TheArchAngels</a></p>
+                </footer>
+            </div>
         </div>
 
-            <!-- Dashboard Page -->
-            <div id="dashboard" class="page" style="display:none;">
-                <div class="dashboard-box">
-                    <div id="user-avatar">
-                        <img id="avatar" src="" alt="User Avatar">
+        <div id="leaderboard" class="page" style="display:none;">
+            <h2>🏆Leaderboard</h2>
+            <div class="leaderboard-category">
+                <h3>Economy Commands</h3>
+                <div class="command-list">
+                    <div class="command-item">
+                        <button class="command-btn" title="Check your account balance">/balance</button>
+                        <div class="command-description">Check your account balance in the economy system.</div>
                     </div>
-                    <h1>Welcome, <span id="username">{{ username }}</span>!</h1> 
-                    <footer>
-                        <p>This is the Arch Angels official website, developed by @Blake0_o</p>
-                        <p>Please show your support by joining our Discord: <a href="https://discord.gg/TheArchAngels" target="_blank">Discord.gg/TheArchAngels</a></p>
-                    </footer>
                 </div>
             </div>
+        </div>
+    </div>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arch Angels Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="bot-icon">
+                <img src="https://i.postimg.cc/Pr31Rx40/Here-is-a-non-realistic-profile-picture-in-a-gold-white-and-blue-theme-inspired-by-an-Archangel.png" alt="Bot Icon">
+            </div>
+            <ul class="menu">
+                <li><button class="menu-btn" onclick="showPage('dashboard')">Dashboard</button></li>
+                <li><button class="menu-btn" onclick="window.location.href='https://blake0v2.github.io/ArchAngelCommands/commands.html'">Commands</button></li>
+                <li><button class="menu-btn" onclick="window.location.href='https://blake0v2.github.io/CurrentRaid/currentraid.html'">Current Raid</button></li>
+                <li><button class="menu-btn" onclick="showPage('leaderboard')">Leaderboard</button></li>
+                <li><button class="menu-btn" onclick="showPage('desert-carry')">Desert Carry</button></li>
+            </ul>
+            <!-- Log Out Button -->
+            <a href="#" onclick="logout()" class="logout-btn">Log Out [➔</a>
+        </div>
+        <div class="content">
+        <!-- Dashboard Page -->
+        <div id="dashboard" class="page">
+            <div class="dashboard-box">
+                <div id="user-avatar">
+                    <!-- This will dynamically set the avatar image based on the authenticated user -->
+                    <img id="avatar" src="" alt="User Avatar">
+                </div>
+                <h1>Welcome, <span id="username">{{ username }}</span>!</h1> <!-- The user's actual username will be dynamically set here -->
+                <footer>
+                    <p>This is the Arch Angels official website, developed by @Blake0_o</p>
+                    <p>Please show your support by joining our Discord: <a href="https://discord.gg/TheArchAngels" target="_blank">Discord.gg/TheArchAngels</a></p>
+                </footer>
+            </div>
+        </div>
 
-            <div id="leaderboard" class="page" style="display:none;">
-                <h2>🏆Leaderboard</h2>
-                <div class="leaderboard-category">
-                    <h3>Economy Commands</h3>
-                    <div class="command-list">
-                        <div class="command-item">
-                            <button class="command-btn" title="Check your account balance">/balance</button>
-                            <div class="command-description">Check your account balance in the economy system.</div>
-                        </div>
+        <div id="leaderboard" class="page" style="display:none;">
+            <h2>🏆Leaderboard</h2>
+            <div class="leaderboard-category">
+                <h3>Economy Commands</h3>
+                <div class="command-list">
+                    <div class="command-item">
+                        <button class="command-btn" title="Check your account balance">/balance</button>
+                        <div class="command-description">Check your account balance in the economy system.</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        const clientId = '1404595445275164804';
-        const redirectUri = 'https://blake0v2.github.io/CelestialBeingDashboard/dashboard.html';
-        const oauthUrl = `https://discord.com/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&scope=identify`;
-
-        // Check if the URL contains the access token (after OAuth2 redirect)
-        if (window.location.hash) {
-            const urlParams = new URLSearchParams(window.location.hash.substring(1));
-            const token = urlParams.get('access_token');
-            
-            if (token) {
-                localStorage.setItem('discord_token', token);
-                window.location.hash = '';  // Clear hash to avoid re-login
-                window.location.reload();
-            }
-        }
-
-        // Check if the user is authenticated
-        if (!localStorage.getItem('discord_token')) {
-            showPage('login');  // Show login page if not authenticated
-        } else {
-            // Fetch user data from Discord API
-            const token = localStorage.getItem('discord_token');
-            fetch('https://discord.com/api/v10/users/@me', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('username').innerText = data.username;
-                document.getElementById('avatar').src = data.avatar ? `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png` : 'default-avatar.png';
-                showPage('dashboard');  // Show dashboard after authentication
-            })
-            .catch(err => {
-                console.error('Error fetching user data: ', err);
-                showPage('login');
-            });
-        }
-
-        function logout() {
-            localStorage.removeItem('discord_token');
-            window.location.reload();  // Reload the page to show login screen again
-        }
-
-        // Function to show a specific page and hide others
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.style.display = 'none');
-            document.getElementById(pageId).style.display = 'block';
-        }
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>
