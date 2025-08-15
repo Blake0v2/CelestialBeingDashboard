@@ -110,10 +110,24 @@
         const clientId = '1404595445275164804'; // Replace with your Discord app client ID
         const redirectUri = 'https://blake0v2.github.io/CelestialBeingDashboard/dashboard.html'; // Your redirect URL
         const oauthUrl = `https://discord.com/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&scope=identify`;
-
+        
+        // Check if the URL contains the access token (redirect after OAuth2)
+        if (window.location.hash) {
+            const urlParams = new URLSearchParams(window.location.hash.substring(1));
+            const token = urlParams.get('access_token');
+            
+            if (token) {
+                // Save the token in localStorage
+                localStorage.setItem('discord_token', token);
+                // Redirect to the same page to avoid token being in the URL
+                window.location.hash = '';
+                window.location.reload();
+            }
+        }
+        
         // Check if the user is authenticated
         if (!localStorage.getItem('discord_token')) {
-            // Redirect to OAuth2 login
+            // Redirect to OAuth2 login if not authenticated
             window.location.href = oauthUrl;
         } else {
             // Fetch user data using the Discord API
@@ -133,13 +147,13 @@
                 console.error('Error fetching user data: ', err);
             });
         }
-
+        
         // Log out function
         function logout() {
             localStorage.removeItem('discord_token');
             window.location.reload();
         }
-
+        
         // Function to show a specific page and hide others
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
