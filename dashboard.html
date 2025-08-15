@@ -52,32 +52,6 @@
         </div>
     </div>
 
-    <script>
-        // Check if the user is authenticated
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const userData = urlParams.get('userData');
-
-            if (userData) {
-                const user = JSON.parse(decodeURIComponent(userData));
-
-                // Dynamically set the username and avatar based on the authenticated user's data
-                document.getElementById('username').innerText = user.username;
-                document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
-            } else {
-                // If no user is found in URL params, redirect to the login page
-                window.location.href = "dashboard.html";
-            }
-        }
-
-        // Function to show a specific page and hide others
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.style.display = 'none');
-
-            const selectedPage = document.getElementById(pageId);
-            selectedPage.style.display = 'block';
-        }
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>
