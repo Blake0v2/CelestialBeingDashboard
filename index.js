@@ -56,7 +56,7 @@ async def callback(request: Request):
     avatar_url = f"https://cdn.discordapp.com/avatars/{user_data['id']}/{user_data['avatar']}.png"
 
     # Send the access token and user data back to the frontend for storage
-    return templates.TemplateResponse("index.html", {
+    return templates.TemplateResponse("dashboard.html", {
         "request": request, 
         "username": username, 
         "avatar_url": avatar_url, 
