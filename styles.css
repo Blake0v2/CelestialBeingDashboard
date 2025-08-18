@@ -135,10 +135,10 @@ body {
 .join-btn {
     width: 100%;
     padding: 15px;
-    background: #333;
+    background: #4553be;
     border: 1px solid #ffffff30;
     border-radius: 8px;
-    color: #4553be;
+    color: white;
     font-size: 16px;
     cursor: pointer;
     margin: 10px 0;
@@ -151,10 +151,10 @@ body {
 .logout-btn {
     width: 100%;
     padding: 15px;
-    background: #333;
+    background: #FF0000;
     border: 1px solid #ffffff30;
     border-radius: 8px;
-    color: #FF0000;
+    color: white;
     font-size: 16px;
     cursor: pointer;
     margin: 10px 0;
