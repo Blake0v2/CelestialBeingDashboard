@@ -132,21 +132,6 @@ body {
     background: #e4bf67;
 }
 
-.content {
-    flex: 1;
-    padding: 20px;
-    color: white;
-    overflow-y: auto;
-}
-
-.page {
-    display: none;
-}
-
-.page:first-child {
-    display: block;
-}
-
 .join-btn {
     color: #4553be;
     width: 100%;
@@ -179,6 +164,21 @@ body {
 
 .logout-btn:hover {
     background: #e4bf67;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    color: white;
+    overflow-y: auto;
+}
+
+.page {
+    display: none;
+}
+
+.page:first-child {
+    display: block;
 }
 
 #current_raid,
