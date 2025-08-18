@@ -22,21 +22,23 @@
                 <li><button class="join-btn" onclick="window.location.href='https://discord.gg/TheArchAngels'">Join Discord</button></li>
             </ul>
         </div>
+
         <div class="content">
-        <!-- Dashboard Page -->
-        <div id="dashboard" class="page">
-            <div class="dashboard-box">
-                <h1>Welcome, <span id="username">{{ username }}</span>!</h1>
-                <div id="user-avatar">
-                    <!-- Set the user's avatar image dynamically -->
-                    <img id="avatar" src="{{ avatar_url }}" alt="User Avatar">
-                </div>
+            <!-- Dashboard Page -->
+            <div id="dashboard" class="page">
+                <div class="dashboard-box">
+                    <h1>Welcome, <span id="username">{{ username or 'Guest' }}</span>!</h1>
+                    <div id="user-avatar">
+                        <!-- Set the user's avatar image dynamically -->
+                        <img id="avatar" src="{{ avatar_url or 'https://cdn.discordapp.com/embed/avatars/0.png' }}" alt="User Avatar">
+                    </div>
                     <p>This is the Arch Angels official website, developed by @Blake0_o</p>
                     <p>Please show your support by joining our Discord: <a href="https://discord.gg/TheArchAngels" target="_blank">Discord.gg/TheArchAngels</a></p>
-                </footer>
+                </div>
             </div>
+
         </div>
 
-    <script src="index.py"></script>
+    <script src="index.js"></script>
 </body>
 </html>
