@@ -26,12 +26,11 @@
         <!-- Dashboard Page -->
         <div id="dashboard" class="page">
             <div class="dashboard-box">
+                <h1>Welcome, <span id="username">{{ username }}</span>!</h1>
                 <div id="user-avatar">
-                    <!-- This will dynamically set the avatar image based on the authenticated user -->
-                    <img id="avatar" src="" alt="User Avatar">
+                    <!-- Set the user's avatar image dynamically -->
+                    <img id="avatar" src="{{ avatar_url }}" alt="User Avatar">
                 </div>
-                <h1>Welcome, <span id="username">{{ username }}</span>!</h1> <!-- The user's actual username will be dynamically set here -->
-                <footer>
                     <p>This is the Arch Angels official website, developed by @Blake0_o</p>
                     <p>Please show your support by joining our Discord: <a href="https://discord.gg/TheArchAngels" target="_blank">Discord.gg/TheArchAngels</a></p>
                 </footer>
